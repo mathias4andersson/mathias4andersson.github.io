@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trail Guides — Sentier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --moss: #4a5240; --stone: #8c8272; --bark: #6b4f3a;
+      --cream: #f4f0e6; --parchment: #ede8d8; --sage: #7d8c6e;
+      --lichen: #b5b89e; --earth: #2e2a22; --mist: #d4cfc2; --fern: #3d5c3a;
+      --nav-h: 70px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body { background:var(--cream); color:var(--earth); font-family:'Libre Baskerville',Georgia,serif; font-size:16px; line-height:1.75; }
+    a { text-decoration:none; color:inherit; }
+
+    body::after {
+      content:''; position:fixed; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events:none; z-index:9000; opacity:0.5;
+    }
+
+    /* NAV */
+    .site-nav { position:fixed; top:0; left:0; right:0; z-index:500; background:rgba(244,240,230,0.95); backdrop-filter:blur(14px); border-bottom:1px solid var(--mist); height:var(--nav-h); }
+    .nav-inner { max-width:1400px; margin:0 auto; height:100%; display:flex; align-items:center; justify-content:space-between; padding:0 2.5rem; }
+    .nav-logo { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--moss); }
+    .nav-logo span { font-style:italic; color:var(--bark); }
+    .nav-primary { display:flex; align-items:center; list-style:none; height:100%; }
+    .nav-item { position:relative; height:100%; display:flex; align-items:center; }
+    .nav-item > a { font-family:'Jost',sans-serif; font-size:0.78rem; font-weight:500; letter-spacing:0.13em; text-transform:uppercase; color:var(--stone); padding:0 1.2rem; height:100%; display:flex; align-items:center; transition:color 0.2s; white-space:nowrap; }
+    .nav-item > a:hover, .nav-item > a.active { color:var(--moss); }
+    .nav-item > a.active { border-bottom:2px solid var(--moss); }
+    .drop-menu { position:absolute; top:var(--nav-h); left:0; background:var(--cream); border:1px solid var(--mist); border-top:2px solid var(--moss); min-width:200px; padding:0.8rem 0; display:none; box-shadow:0 8px 30px rgba(46,42,34,0.1); z-index:600; }
+    .nav-item:hover .drop-menu { display:block; }
+    .drop-menu a { display:block; font-family:'Jost',sans-serif; font-size:0.82rem; color:var(--stone); padding:0.55rem 1.4rem; transition:background 0.15s,color 0.15s; }
+    .drop-menu a:hover { background:var(--parchment); color:var(--moss); }
+    .mega-menu { position:absolute; top:var(--nav-h); left:50%; transform:translateX(-50%); background:var(--cream); border:1px solid var(--mist); border-top:2px solid var(--moss); padding:2rem; display:none; gap:0; min-width:680px; box-shadow:0 12px 40px rgba(46,42,34,0.12); z-index:600; }
+    .nav-item:hover .mega-menu { display:grid; grid-template-columns:repeat(3,1fr); gap:0; }
+    .mega-col { padding:0 1.5rem; }
+    .mega-col:not(:last-child) { border-right:1px solid var(--mist); }
+    .mega-col-title { font-family:'Jost',sans-serif; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--lichen); margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--mist); }
+    .mega-links { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+    .mega-links li a { font-family:'Jost',sans-serif; font-size:0.85rem; color:var(--stone); display:flex; align-items:center; gap:0.5rem; padding:0.3rem 0; transition:color 0.2s,padding-left 0.2s; }
+    .mega-links li a:hover { color:var(--moss); padding-left:0.3rem; }
+    .nav-right { display:flex; align-items:center; gap:1rem; }
+    .nav-search { background:none; border:none; cursor:pointer; color:var(--stone); font-size:1.1rem; padding:0.4rem; transition:color 0.2s; }
+    .nav-search:hover { color:var(--moss); }
+    .btn-nav { font-family:'Jost',sans-serif; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; background:var(--moss); color:var(--cream); padding:0.55rem 1.2rem; transition:background 0.2s; }
+    .btn-nav:hover { background:var(--fern); }
+
+    /* PAGE HERO */
+    .page-hero {
+      margin-top: var(--nav-h);
+      background: var(--earth);
+      color: var(--cream);
+      padding: 5rem 2.5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .page-hero-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
+    .page-hero-bg {
+      position: absolute; top: -2rem; right: -2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 18rem; font-weight: 700;
+      color: rgba(255,255,255,0.025); line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .breadcrumb {
+      font-family: 'Jost', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--lichen); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .breadcrumb a { color: var(--stone); transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--lichen); }
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      line-height: 1.1; margin-bottom: 1rem;
+    }
+    .page-title em { font-style: italic; color: var(--sage); }
+    .page-desc {
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      font-size: 1rem; color: var(--mist);
+      max-width: 550px; line-height: 1.75;
+    }
+    .page-hero-stats {
+      display: flex; gap: 3rem; margin-top: 3rem;
+      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; color: var(--lichen);
+    }
+    .stat-label {
+      font-family: 'Jost', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    /* FILTER BAR */
+    .filter-bar {
+      background: var(--parchment);
+      border-bottom: 1px solid var(--mist);
+      position: sticky; top: var(--nav-h); z-index: 400;
+    }
+    .filter-inner {
+      max-width: 1400px; margin: 0 auto; padding: 0 2.5rem;
+      display: flex; align-items: center; gap: 0; overflow-x: auto;
+    }
+    .filter-label {
+      font-family: 'Jost', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--lichen); white-space: nowrap;
+      padding: 1rem 1.5rem 1rem 0; border-right: 1px solid var(--mist);
+      margin-right: 1.5rem;
+    }
+    .filter-btn {
+      font-family: 'Jost', sans-serif; font-size: 0.75rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--stone); background: none; border: none;
+      padding: 1rem 1rem; cursor: pointer; white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active { color: var(--moss); border-bottom-color: var(--moss); }
+
+    /* MAIN CONTENT */
+    .trails-main {
+      max-width: 1400px; margin: 0 auto; padding: 3rem 2.5rem 5rem;
+      display: grid; grid-template-columns: 1fr 300px; gap: 4rem;
+    }
+
+    /* TRAIL LIST */
+    .trail-list { display: flex; flex-direction: column; gap: 2rem; }
+
+    .trail-feature {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      background: var(--parchment); cursor: pointer;
+      transition: transform 0.25s; overflow: hidden;
+    }
+    .trail-feature:hover { transform: translateY(-3px); }
+    .trail-feature-image { aspect-ratio: 4/3; overflow: hidden; }
+    .trail-feature-image svg { width: 100%; height: 100%; display: block; transition: transform 0.4s; }
+    .trail-feature:hover .trail-feature-image svg { transform: scale(1.04); }
+    .trail-feature-body { padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+
+    .trail-card-sm {
+      display: grid; grid-template-columns: 200px 1fr; gap: 0;
+      background: var(--parchment); cursor: pointer;
+      transition: transform 0.25s; overflow: hidden;
+    }
+    .trail-card-sm:hover { transform: translateY(-2px); }
+    .trail-card-sm-image { overflow: hidden; }
+    .trail-card-sm-image svg { width: 100%; height: 100%; display: block; transition: transform 0.4s; }
+    .trail-card-sm:hover .trail-card-sm-image svg { transform: scale(1.05); }
+    .trail-card-sm-body { padding: 1.5rem 1.8rem; }
+
+    .trail-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+    .tag { font-family:'Jost',sans-serif; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.2rem 0.55rem; border:1px solid var(--lichen); color:var(--stone); }
+    .tag.green { border-color:var(--sage); color:var(--fern); }
+    .tag.bark { border-color:var(--bark); color:var(--bark); }
+    .tag.yellow { border-color:#a08040; color:#8a6a20; }
+
+    .trail-title { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--earth); line-height:1.3; margin-bottom:0.6rem; }
+    .trail-title-lg { font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--earth); line-height:1.2; margin-bottom:0.8rem; }
+    .trail-excerpt { font-family:'Jost',sans-serif; font-weight:300; font-size:0.88rem; color:var(--stone); line-height:1.7; margin-bottom:1.2rem; }
+    .trail-stats { display:flex; gap:1.2rem; flex-wrap:wrap; }
+    .trail-stat { font-family:'Jost',sans-serif; font-size:0.75rem; color:var(--stone); display:flex; align-items:center; gap:0.3rem; }
+    .trail-stat strong { color:var(--earth); }
+    .read-more { font-family:'Jost',sans-serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--moss); display:inline-flex; align-items:center; gap:0.4rem; transition:gap 0.2s; margin-top:1.2rem; }
+    .read-more:hover { gap:0.7rem; }
+    .read-more::after { content:'→'; }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: calc(var(--nav-h) + 60px); height: fit-content; }
+    .sidebar-widget { margin-bottom: 2.5rem; }
+    .widget-title { font-family:'Jost',sans-serif; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--lichen); margin-bottom:1.2rem; padding-bottom:0.6rem; border-bottom:1px solid var(--mist); }
+    .widget-list { list-style:none; display:flex; flex-direction:column; gap:0; }
+    .widget-list li { border-bottom:1px solid var(--mist); }
+    .widget-list a { font-family:'Jost',sans-serif; font-size:0.85rem; color:var(--stone); padding:0.7rem 0; display:flex; align-items:center; gap:0.6rem; transition:color 0.2s,padding-left 0.2s; }
+    .widget-list a:hover { color:var(--moss); padding-left:0.3rem; }
+    .region-card { background:var(--parchment); padding:1.2rem; margin-bottom:0.5rem; cursor:pointer; transition:background 0.2s; }
+    .region-card:hover { background:var(--mist); }
+    .region-name { font-family:'Playfair Display',serif; font-size:1rem; color:var(--earth); margin-bottom:0.2rem; }
+    .region-count { font-family:'Jost',sans-serif; font-size:0.72rem; color:var(--stone); }
+    .transport-guide { background:var(--moss); color:var(--cream); padding:1.5rem; }
+    .tg-title { font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:0.5rem; }
+    .tg-text { font-family:'Jost',sans-serif; font-weight:300; font-size:0.82rem; color:var(--lichen); line-height:1.6; margin-bottom:1rem; }
+    .tg-btn { font-family:'Jost',sans-serif; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; border:1px solid rgba(255,255,255,0.3); color:var(--cream); padding:0.5rem 1rem; display:inline-block; transition:border-color 0.2s; }
+    .tg-btn:hover { border-color:var(--lichen); }
+
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity 0.6s ease,transform 0.6s ease; }
+    .reveal.up { opacity:1; transform:translateY(0); }
+
+    /* FOOTER */
+    .site-footer { background:var(--earth); color:var(--cream); border-top:1px solid rgba(255,255,255,0.07); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,0.06); padding:1.5rem 2.5rem; max-width:1400px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .footer-copy { font-family:'Jost',sans-serif; font-size:0.72rem; color:var(--stone); }
+    .footer-top { max-width:1400px; margin:0 auto; padding:4rem 2.5rem 3rem; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; }
+    .footer-logo { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--lichen); }
+    .footer-logo span { font-style:italic; color:var(--sage); }
+    .footer-tagline { font-family:'Jost',sans-serif; font-size:0.8rem; color:var(--stone); margin-top:0.5rem; line-height:1.6; max-width:220px; }
+    .footer-col-title { font-family:'Jost',sans-serif; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--lichen); margin-bottom:1.2rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(255,255,255,0.07); }
+    .footer-links { list-style:none; display:flex; flex-direction:column; gap:0.55rem; }
+    .footer-links a { font-family:'Jost',sans-serif; font-size:0.82rem; color:var(--stone); transition:color 0.2s; }
+    .footer-links a:hover { color:var(--lichen); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Sentier<span>.</span></a>
+    <ul class="nav-primary">
+      <li class="nav-item">
+        <a href="trails.html" class="active">Trails</a>
+        <div class="mega-menu">
+          <div class="mega-col">
+            <p class="mega-col-title">By Region</p>
+            <ul class="mega-links">
+              <li><a href="trails.html"><span>🏔</span> Bernese Oberland</a></li>
+              <li><a href="trails.html"><span>⛰</span> Graubünden</a></li>
+              <li><a href="trails.html"><span>🌿</span> Ticino</a></li>
+              <li><a href="trails.html"><span>🌲</span> Valais</a></li>
+              <li><a href="trails.html"><span>🗺</span> Central Switzerland</a></li>
+            </ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-col-title">By Difficulty</p>
+            <ul class="mega-links">
+              <li><a href="trails.html"><span>🟢</span> Easy</a></li>
+              <li><a href="trails.html"><span>🟡</span> Moderate</a></li>
+              <li><a href="trails.html"><span>🔴</span> Challenging</a></li>
+              <li><a href="trails.html"><span>⚡</span> Multi-Day</a></li>
+            </ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-col-title">By Transport</p>
+            <ul class="mega-links">
+              <li><a href="trails.html"><span>🚂</span> SBB Direct</a></li>
+              <li><a href="trails.html"><span>🚌</span> PostBus</a></li>
+              <li><a href="trails.html"><span>🚡</span> Cable Car</a></li>
+              <li><a href="trails.html"><span>⛵</span> Lake Ferry</a></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item"><a href="gear.html">Gear</a></li>
+      <li class="nav-item">
+        <a href="trails.html">By Train</a>
+        <div class="drop-menu">
+          <a href="trails.html">SBB Route Planner Tips</a>
+          <a href="trails.html">GA vs Halbtax Guide</a>
+          <a href="trails.html">PostBus Timetables</a>
+          <a href="trails.html">Car-Free Weekend Ideas</a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="#">Sustainability</a></li>
+      <li class="nav-item"><a href="#">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-search">🔍</button>
+      <a href="#" class="btn-nav">Newsletter</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-hero-bg">Trails</span>
+    <p class="breadcrumb"><a href="index.html">Home</a> <span>›</span> Trail Guides</p>
+    <h1 class="page-title">Swiss Trail <em>Guides</em></h1>
+    <p class="page-desc">Every route reachable by public transport. Every guide written from boots-on-ground experience. No cars, no fluff.</p>
+    <div class="page-hero-stats">
+      <div class="stat-item">
+        <p class="stat-num">24</p>
+        <p class="stat-label">Trail Guides</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-num">8</p>
+        <p class="stat-label">Swiss Regions</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-num">100%</p>
+        <p class="stat-label">Car-Free Access</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-num">340+</p>
+        <p class="stat-label">km Documented</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active">All Trails</button>
+    <button class="filter-btn">🟢 Easy</button>
+    <button class="filter-btn">🟡 Moderate</button>
+    <button class="filter-btn">🔴 Challenging</button>
+    <button class="filter-btn">🚂 SBB Direct</button>
+    <button class="filter-btn">🚌 PostBus</button>
+    <button class="filter-btn">🏔 Bernese Oberland</button>
+    <button class="filter-btn">⛰ Graubünden</button>
+    <button class="filter-btn">🌿 Ticino</button>
+  </div>
+</div>
+
+<!-- TRAILS + SIDEBAR -->
+<div class="trails-main">
+  <div class="trail-list">
+
+    <!-- FEATURED TRAIL -->
+    <article class="trail-feature reveal">
+      <div class="trail-feature-image">
+        <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="450" fill="#3d5032"/>
+          <polygon points="0,450 0,260 100,160 220,240 340,100 460,200 580,120 600,140 600,450" fill="#2a3d20"/>
+          <polygon points="340,100 310,168 370,168" fill="rgba(244,240,230,0.92)"/>
+          <polygon points="580,120 558,172 602,172" fill="rgba(244,240,230,0.75)"/>
+          <ellipse cx="150" cy="240" rx="120" ry="40" fill="rgba(107,143,113,0.45)"/>
+          <path d="M100 450 Q160 390 230 355 Q300 320 350 280 Q400 245 440 210" stroke="rgba(244,240,230,0.3)" stroke-width="2.5" fill="none" stroke-dasharray="7,5"/>
+          <g fill="#1e2d18">
+            <polygon points="30,450 30,395 48,360 66,395 66,450"/>
+            <polygon points="510,450 510,400 526,367 542,400 542,450"/>
+            <polygon points="555,450 555,408 569,378 583,408 583,450"/>
+          </g>
+          <circle cx="460" cy="70" r="30" fill="rgba(244,240,230,0.09)"/>
+        </svg>
+      </div>
+      <div class="trail-feature-body">
+        <div class="trail-tags">
+          <span class="tag green">🚂 SBB Direct from Bern</span>
+          <span class="tag yellow">★ Editor's Pick</span>
+          <span class="tag">Challenging</span>
+        </div>
+        <h2 class="trail-title-lg">Schynige Platte to First: the ridge that earns its view</h2>
+        <p class="trail-excerpt">14 kilometres of exposed alpine ridge with the Eiger, Mönch and Jungfrau filling every frame. This is the hike that made me fall in love with the Bernese Oberland — and it starts with a rack railway from Wilderswil.</p>
+        <div class="trail-stats">
+          <span class="trail-stat"><strong>14 km</strong> distance</span>
+          <span class="trail-stat"><strong>↑ 800m</strong> ascent</span>
+          <span class="trail-stat"><strong>6–7h</strong> duration</span>
+          <span class="trail-stat">Bernese Oberland</span>
+        </div>
+        <a href="#" class="read-more">Read the full guide</a>
+      </div>
+    </article>
+
+    <!-- SMALLER TRAIL CARDS -->
+    <article class="trail-card-sm reveal">
+      <div class="trail-card-sm-image">
+        <svg viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="150" fill="#4a5c6b"/>
+          <ellipse cx="100" cy="130" rx="90" ry="30" fill="rgba(74,107,143,0.5)"/>
+          <polygon points="0,150 0,90 50,55 100,85 140,40 180,75 200,60 200,150" fill="#2e3d4a"/>
+          <polygon points="140,40 122,82 158,82" fill="rgba(244,240,230,0.85)"/>
+        </svg>
+      </div>
+      <div class="trail-card-sm-body">
+        <div class="trail-tags">
+          <span class="tag green">🚋 Rack Railway</span>
+          <span class="tag">Moderate</span>
+        </div>
+        <h3 class="trail-title">Oeschinensee Loop, Kandersteg</h3>
+        <p class="trail-excerpt">The turquoise alpine lake surrounded by sheer limestone walls. Kandersteg is a 90-minute train from Bern.</p>
+        <div class="trail-stats">
+          <span class="trail-stat"><strong>11 km</strong></span>
+          <span class="trail-stat"><strong>↑ 750m</strong></span>
+          <span class="trail-stat"><strong>4–5h</strong></span>
+        </div>
+        <a href="#" class="read-more">Full guide</a>
+      </div>
+    </article>
+
+    <article class="trail-card-sm reveal">
+      <div class="trail-card-sm-image">
+        <svg viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="150" fill="#5c7a52"/>
+          <polygon points="0,150 0,95 45,60 90,90 130,45 170,75 200,55 200,150" fill="#2e4028"/>
+          <polygon points="130,45 112,88 148,88" fill="rgba(244,240,230,0.8)"/>
+          <g fill="#1e2d18"><polygon points="10,150 10,120 20,103 30,120 30,150"/><polygon points="170,150 170,118 180,100 190,118 190,150"/></g>
+        </svg>
+      </div>
+      <div class="trail-card-sm-body">
+        <div class="trail-tags">
+          <span class="tag green">🚂 SBB + PostBus</span>
+          <span class="tag">Easy</span>
+        </div>
+        <h3 class="trail-title">Rigi Panorama Walk, Central Switzerland</h3>
+        <p class="trail-excerpt">The Queen of the Mountains lives up to her name in autumn. Accessible from both Lucerne and Arth-Goldau.</p>
+        <div class="trail-stats">
+          <span class="trail-stat"><strong>8 km</strong></span>
+          <span class="trail-stat"><strong>↑ 380m</strong></span>
+          <span class="trail-stat"><strong>3h</strong></span>
+        </div>
+        <a href="#" class="read-more">Full guide</a>
+      </div>
+    </article>
+
+    <article class="trail-card-sm reveal">
+      <div class="trail-card-sm-image">
+        <svg viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="150" fill="#6b5c3a"/>
+          <polygon points="0,150 0,100 40,65 85,95 120,50 160,80 200,60 200,150" fill="#3d3020"/>
+          <polygon points="120,50 102,92 138,92" fill="rgba(244,240,230,0.82)"/>
+          <ellipse cx="160" cy="30" rx="35" ry="14" fill="rgba(244,240,230,0.1)"/>
+        </svg>
+      </div>
+      <div class="trail-card-sm-body">
+        <div class="trail-tags">
+          <span class="tag green">🚌 PostBus</span>
+          <span class="tag">Challenging</span>
+        </div>
+        <h3 class="trail-title">Segantini Weg, Graubünden</h3>
+        <p class="trail-excerpt">The artist's trail above St. Moritz. The views that inspired a painter — and now accessible by train from Zürich.</p>
+        <div class="trail-stats">
+          <span class="trail-stat"><strong>16 km</strong></span>
+          <span class="trail-stat"><strong>↑ 950m</strong></span>
+          <span class="trail-stat"><strong>6h</strong></span>
+        </div>
+        <a href="#" class="read-more">Full guide</a>
+      </div>
+    </article>
+
+    <article class="trail-card-sm reveal">
+      <div class="trail-card-sm-image">
+        <svg viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="150" fill="#4a7055"/>
+          <polygon points="0,150 0,100 35,70 75,100 110,55 155,85 200,65 200,150" fill="#2e4a38"/>
+          <polygon points="110,55 92,96 128,96" fill="rgba(244,240,230,0.85)"/>
+          <ellipse cx="60" cy="120" rx="55" ry="18" fill="rgba(74,143,107,0.35)"/>
+        </svg>
+      </div>
+      <div class="trail-card-sm-body">
+        <div class="trail-tags">
+          <span class="tag green">⛵ Lake Ferry</span>
+          <span class="tag">Easy</span>
+        </div>
+        <h3 class="trail-title">Monte San Salvatore, Ticino</h3>
+        <p class="trail-excerpt">Palm trees, lake views, and Mediterranean light. Take the ferry from Lugano, hike up, funicular down.</p>
+        <div class="trail-stats">
+          <span class="trail-stat"><strong>7 km</strong></span>
+          <span class="trail-stat"><strong>↑ 640m</strong></span>
+          <span class="trail-stat"><strong>3h</strong></span>
+        </div>
+        <a href="#" class="read-more">Full guide</a>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-widget reveal">
+      <p class="widget-title">Browse by region</p>
+      <div class="region-card"><p class="region-name">🏔 Bernese Oberland</p><p class="region-count">8 trails</p></div>
+      <div class="region-card"><p class="region-name">⛰ Graubünden</p><p class="region-count">6 trails</p></div>
+      <div class="region-card"><p class="region-name">🌿 Ticino</p><p class="region-count">4 trails</p></div>
+      <div class="region-card"><p class="region-name">🌲 Valais</p><p class="region-count">4 trails</p></div>
+      <div class="region-card"><p class="region-name">🗺 Central Switzerland</p><p class="region-count">2 trails</p></div>
+    </div>
+
+    <div class="sidebar-widget reveal">
+      <div class="transport-guide">
+        <p class="tg-title">Planning by train?</p>
+        <p class="tg-text">Every guide includes exact SBB connections, PostBus times, and tips for GA and Halbtax holders.</p>
+        <a href="#" class="tg-btn">Transport guide →</a>
+      </div>
+    </div>
+
+    <div class="sidebar-widget reveal">
+      <p class="widget-title">Most read trails</p>
+      <ul class="widget-list">
+        <li><a href="#">🏔 Oeschinensee Loop</a></li>
+        <li><a href="#">⛰ Schynige Platte to First</a></li>
+        <li><a href="#">🗺 Rigi Panorama Walk</a></li>
+        <li><a href="#">🌿 Monte San Salvatore</a></li>
+        <li><a href="#">🌲 Segantini Weg</a></li>
+      </ul>
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Sentier<span>.</span></div>
+      <p class="footer-tagline">Trails, sustainable gear, and every route reachable by train.</p>
+    </div>
+    <div><p class="footer-col-title">Explore</p><ul class="footer-links"><li><a href="trails.html">Trail Guides</a></li><li><a href="gear.html">Gear Reviews</a></li><li><a href="#">By Train</a></li><li><a href="#">Sustainability</a></li></ul></div>
+    <div><p class="footer-col-title">Regions</p><ul class="footer-links"><li><a href="#">Bernese Oberland</a></li><li><a href="#">Graubünden</a></li><li><a href="#">Valais</a></li><li><a href="#">Ticino</a></li></ul></div>
+    <div><p class="footer-col-title">About</p><ul class="footer-links"><li><a href="#">About Sentier</a></li><li><a href="#">Our Philosophy</a></li><li><a href="#">Work With Us</a></li><li><a href="#">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Sentier. Made in Switzerland.</p>
+    <p class="footer-copy">Privacy · Affiliate Disclosure</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(() => e.target.classList.add('up'), i*60); });
+  }, {threshold:0.08});
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

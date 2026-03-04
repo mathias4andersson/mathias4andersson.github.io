@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sustainable Gear — Sentier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --moss:#4a5240; --stone:#8c8272; --bark:#6b4f3a;
+      --cream:#f4f0e6; --parchment:#ede8d8; --sage:#7d8c6e;
+      --lichen:#b5b89e; --earth:#2e2a22; --mist:#d4cfc2; --fern:#3d5c3a;
+      --nav-h:70px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--cream); color:var(--earth); font-family:'Libre Baskerville',Georgia,serif; font-size:16px; line-height:1.75; }
+    a { text-decoration:none; color:inherit; }
+    body::after { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events:none; z-index:9000; opacity:0.5; }
+
+    /* NAV (same as other pages) */
+    .site-nav { position:fixed; top:0; left:0; right:0; z-index:500; background:rgba(244,240,230,0.95); backdrop-filter:blur(14px); border-bottom:1px solid var(--mist); height:var(--nav-h); }
+    .nav-inner { max-width:1400px; margin:0 auto; height:100%; display:flex; align-items:center; justify-content:space-between; padding:0 2.5rem; }
+    .nav-logo { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--moss); }
+    .nav-logo span { font-style:italic; color:var(--bark); }
+    .nav-primary { display:flex; align-items:center; list-style:none; height:100%; }
+    .nav-item { position:relative; height:100%; display:flex; align-items:center; }
+    .nav-item > a { font-family:'Jost',sans-serif; font-size:0.78rem; font-weight:500; letter-spacing:0.13em; text-transform:uppercase; color:var(--stone); padding:0 1.2rem; height:100%; display:flex; align-items:center; transition:color 0.2s; white-space:nowrap; }
+    .nav-item > a:hover, .nav-item > a.active { color:var(--moss); }
+    .nav-item > a.active { border-bottom:2px solid var(--moss); }
+    .drop-menu { position:absolute; top:var(--nav-h); left:0; background:var(--cream); border:1px solid var(--mist); border-top:2px solid var(--moss); min-width:200px; padding:0.8rem 0; display:none; box-shadow:0 8px 30px rgba(46,42,34,0.1); z-index:600; }
+    .nav-item:hover .drop-menu { display:block; }
+    .drop-menu a { display:block; font-family:'Jost',sans-serif; font-size:0.82rem; color:var(--stone); padding:0.55rem 1.4rem; transition:background 0.15s,color 0.15s; }
+    .drop-menu a:hover { background:var(--parchment); color:var(--moss); }
+    .mega-menu { position:absolute; top:var(--nav-h); left:50%; transform:translateX(-50%); background:var(--cream); border:1px solid var(--mist); border-top:2px solid var(--moss); padding:2rem; display:none; min-width:680px; box-shadow:0 12px 40px rgba(46,42,34,0.12); z-index:600; }
+    .nav-item:hover .mega-menu { display:grid; grid-template-columns:repeat(3,1fr); gap:0; }
+    .mega-col { padding:0 1.5rem; }
+    .mega-col:not(:last-child) { border-right:1px solid var(--mist); }
+    .mega-col-title { font-family:'Jost',sans-serif; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--lichen); margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--mist); }
+    .mega-links { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+    .mega-links li a { font-family:'Jost',sans-serif; font-size:0.85rem; color:var(--stone); display:flex; align-items:center; gap:0.5rem; padding:0.3rem 0; transition:color 0.2s,padding-left 0.2s; }
+    .mega-links li a:hover { color:var(--moss); padding-left:0.3rem; }
+    .nav-right { display:flex; align-items:center; gap:1rem; }
+    .nav-search { background:none; border:none; cursor:pointer; color:var(--stone); font-size:1.1rem; padding:0.4rem; }
+    .btn-nav { font-family:'Jost',sans-serif; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; background:var(--moss); color:var(--cream); padding:0.55rem 1.2rem; transition:background 0.2s; }
+    .btn-nav:hover { background:var(--fern); }
+
+    /* PAGE HERO */
+    .page-hero { margin-top:var(--nav-h); background:var(--bark); color:var(--cream); padding:5rem 2.5rem 4rem; position:relative; overflow:hidden; }
+    .page-hero-inner { max-width:1400px; margin:0 auto; position:relative; z-index:2; }
+    .page-hero-bg { position:absolute; top:-2rem; right:-2rem; font-family:'Playfair Display',serif; font-size:18rem; font-weight:700; color:rgba(255,255,255,0.04); line-height:1; pointer-events:none; }
+    .breadcrumb { font-family:'Jost',sans-serif; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:1.5rem; display:flex; align-items:center; gap:0.5rem; }
+    .breadcrumb a { color:rgba(255,255,255,0.4); transition:color 0.2s; }
+    .breadcrumb a:hover { color:rgba(255,255,255,0.7); }
+    .page-title { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,4vw,4rem); line-height:1.1; margin-bottom:1rem; }
+    .page-title em { font-style:italic; color:var(--lichen); }
+    .page-desc { font-family:'Jost',sans-serif; font-weight:300; font-size:1rem; color:rgba(244,240,230,0.75); max-width:550px; line-height:1.75; }
+    .page-hero-stats { display:flex; gap:3rem; margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.1); }
+    .stat-num { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--lichen); }
+    .stat-label { font-family:'Jost',sans-serif; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.4); }
+
+    /* PHILOSOPHY STRIP */
+    .philosophy-strip { background:var(--parchment); border-bottom:1px solid var(--mist); }
+    .philosophy-inner { max-width:1400px; margin:0 auto; padding:1.5rem 2.5rem; display:flex; gap:3rem; align-items:center; overflow-x:auto; }
+    .phil-item { display:flex; align-items:center; gap:0.7rem; white-space:nowrap; }
+    .phil-icon { font-size:1.1rem; }
+    .phil-text { font-family:'Jost',sans-serif; font-size:0.78rem; color:var(--stone); }
+    .phil-divider { width:1px; height:1.5rem; background:var(--mist); flex-shrink:0; }
+
+    /* FILTER BAR */
+    .filter-bar { background:var(--cream); border-bottom:1px solid var(--mist); position:sticky; top:var(--nav-h); z-index:400; }
+    .filter-inner { max-width:1400px; margin:0 auto; padding:0 2.5rem; display:flex; align-items:center; gap:0; overflow-x:auto; }
+    .filter-label { font-family:'Jost',sans-serif; font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--lichen); white-space:nowrap; padding:1rem 1.5rem 1rem 0; border-right:1px solid var(--mist); margin-right:1.5rem; }
+    .filter-btn { font-family:'Jost',sans-serif; font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--stone); background:none; border:none; padding:1rem 1rem; cursor:pointer; white-space:nowrap; border-bottom:2px solid transparent; transition:color 0.2s,border-color 0.2s; }
+    .filter-btn:hover, .filter-btn.active { color:var(--moss); border-bottom-color:var(--moss); }
+
+    /* MAIN */
+    .gear-main { max-width:1400px; margin:0 auto; padding:3rem 2.5rem 5rem; display:grid; grid-template-columns:1fr 300px; gap:4rem; }
+
+    /* GEAR CARDS */
+    .gear-list { display:flex; flex-direction:column; gap:2rem; }
+
+    .gear-feature { display:grid; grid-template-columns:1fr 1fr; background:var(--parchment); overflow:hidden; cursor:pointer; transition:transform 0.25s; }
+    .gear-feature:hover { transform:translateY(-3px); }
+    .gear-feature-image { position:relative; }
+    .gear-feature-image svg { width:100%; height:100%; display:block; }
+    .gear-feature-body { padding:2.5rem 2rem; display:flex; flex-direction:column; justify-content:center; }
+
+    .gear-grid-row { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+
+    .gear-card { background:var(--parchment); overflow:hidden; cursor:pointer; transition:transform 0.25s; }
+    .gear-card:hover { transform:translateY(-3px); }
+    .gear-card-image { aspect-ratio:3/2; overflow:hidden; }
+    .gear-card-image svg { width:100%; height:100%; display:block; transition:transform 0.4s; }
+    .gear-card:hover .gear-card-image svg { transform:scale(1.04); }
+    .gear-card-body { padding:1.6rem; }
+
+    .gear-badges { display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:0.9rem; }
+    .badge { font-family:'Jost',sans-serif; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.22rem 0.6rem; }
+    .badge-swiss { background:var(--moss); color:var(--cream); }
+    .badge-repair { background:var(--fern); color:var(--cream); }
+    .badge-nat { background:var(--bark); color:var(--cream); }
+    .badge-eu { background:var(--sage); color:var(--cream); }
+    .badge-owned { border:1px solid var(--moss); color:var(--moss); }
+
+    .gear-brand { font-family:'Jost',sans-serif; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--sage); margin-bottom:0.3rem; }
+    .gear-name { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--earth); line-height:1.2; margin-bottom:0.5rem; }
+    .gear-name-sm { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--earth); line-height:1.2; margin-bottom:0.5rem; }
+    .gear-tagline { font-family:'Playfair Display',serif; font-style:italic; font-size:1rem; color:var(--stone); margin-bottom:0.8rem; }
+    .gear-desc { font-family:'Jost',sans-serif; font-weight:300; font-size:0.88rem; color:var(--stone); line-height:1.7; margin-bottom:1.2rem; }
+    .gear-why { list-style:none; margin-bottom:1.4rem; display:flex; flex-direction:column; gap:0.35rem; }
+    .gear-why li { font-family:'Jost',sans-serif; font-size:0.82rem; color:var(--stone); display:flex; align-items:flex-start; gap:0.5rem; line-height:1.4; }
+    .gear-why li::before { content:'✓'; color:var(--sage); flex-shrink:0; margin-top:0.1rem; }
+    .gear-rating { display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; }
+    .stars { color:var(--bark); font-size:0.85rem; letter-spacing:0.05em; }
+    .rating-text { font-family:'Jost',sans-serif; font-size:0.75rem; color:var(--stone); }
+    .gear-cta { display:flex; align-items:center; gap:1rem; }
+    .btn-review { font-family:'Jost',sans-serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; background:var(--moss); color:var(--cream); padding:0.7rem 1.4rem; display:inline-block; transition:background 0.2s; }
+    .btn-review:hover { background:var(--fern); }
+    .btn-brand { font-family:'Jost',sans-serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; border:1px solid var(--lichen); color:var(--stone); padding:0.7rem 1.4rem; display:inline-block; transition:border-color 0.2s,color 0.2s; }
+    .btn-brand:hover { border-color:var(--moss); color:var(--moss); }
+
+    /* SIDEBAR */
+    .sidebar { position:sticky; top:calc(var(--nav-h) + 60px); height:fit-content; }
+    .sidebar-widget { margin-bottom:2.5rem; }
+    .widget-title { font-family:'Jost',sans-serif; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--lichen); margin-bottom:1.2rem; padding-bottom:0.6rem; border-bottom:1px solid var(--mist); }
+    .brand-list { display:flex; flex-direction:column; gap:0; }
+    .brand-item { display:flex; justify-content:space-between; align-items:center; padding:0.8rem 0; border-bottom:1px solid var(--mist); cursor:pointer; transition:padding-left 0.2s; }
+    .brand-item:hover { padding-left:0.3rem; }
+    .brand-name { font-family:'Jost',sans-serif; font-size:0.85rem; color:var(--stone); display:flex; align-items:center; gap:0.5rem; }
+    .brand-count { font-family:'Jost',sans-serif; font-size:0.72rem; color:var(--lichen); }
+    .cert-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; }
+    .cert-item { background:var(--parchment); padding:0.8rem; text-align:center; cursor:pointer; transition:background 0.2s; }
+    .cert-item:hover { background:var(--mist); }
+    .cert-icon { font-size:1.3rem; margin-bottom:0.3rem; }
+    .cert-name { font-family:'Jost',sans-serif; font-size:0.65rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--moss); }
+    .disclosure-box { background:var(--parchment); padding:1.2rem; border-left:3px solid var(--lichen); }
+    .disclosure-text { font-family:'Jost',sans-serif; font-size:0.75rem; color:var(--stone); line-height:1.6; }
+
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity 0.6s ease,transform 0.6s ease; }
+    .reveal.up { opacity:1; transform:translateY(0); }
+
+    /* FOOTER */
+    .site-footer { background:var(--earth); color:var(--cream); border-top:1px solid rgba(255,255,255,0.07); }
+    .footer-top { max-width:1400px; margin:0 auto; padding:4rem 2.5rem 3rem; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; }
+    .footer-logo { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--lichen); }
+    .footer-logo span { font-style:italic; color:var(--sage); }
+    .footer-tagline { font-family:'Jost',sans-serif; font-size:0.8rem; color:var(--stone); margin-top:0.5rem; line-height:1.6; max-width:220px; }
+    .footer-col-title { font-family:'Jost',sans-serif; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--lichen); margin-bottom:1.2rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(255,255,255,0.07); }
+    .footer-links { list-style:none; display:flex; flex-direction:column; gap:0.55rem; }
+    .footer-links a { font-family:'Jost',sans-serif; font-size:0.82rem; color:var(--stone); transition:color 0.2s; }
+    .footer-links a:hover { color:var(--lichen); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,0.06); padding:1.5rem 2.5rem; max-width:1400px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .footer-copy { font-family:'Jost',sans-serif; font-size:0.72rem; color:var(--stone); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Sentier<span>.</span></a>
+    <ul class="nav-primary">
+      <li class="nav-item"><a href="trails.html">Trails</a>
+        <div class="mega-menu">
+          <div class="mega-col"><p class="mega-col-title">By Region</p><ul class="mega-links"><li><a href="trails.html"><span>🏔</span> Bernese Oberland</a></li><li><a href="trails.html"><span>⛰</span> Graubünden</a></li><li><a href="trails.html"><span>🌿</span> Ticino</a></li><li><a href="trails.html"><span>🌲</span> Valais</a></li></ul></div>
+          <div class="mega-col"><p class="mega-col-title">By Difficulty</p><ul class="mega-links"><li><a href="trails.html"><span>🟢</span> Easy</a></li><li><a href="trails.html"><span>🟡</span> Moderate</a></li><li><a href="trails.html"><span>🔴</span> Challenging</a></li><li><a href="trails.html"><span>⚡</span> Multi-Day</a></li></ul></div>
+          <div class="mega-col"><p class="mega-col-title">By Transport</p><ul class="mega-links"><li><a href="trails.html"><span>🚂</span> SBB Direct</a></li><li><a href="trails.html"><span>🚌</span> PostBus</a></li><li><a href="trails.html"><span>🚡</span> Cable Car</a></li><li><a href="trails.html"><span>⛵</span> Lake Ferry</a></li></ul></div>
+        </div>
+      </li>
+      <li class="nav-item"><a href="gear.html" class="active">Gear</a>
+        <div class="mega-menu">
+          <div class="mega-col"><p class="mega-col-title">Category</p><ul class="mega-links"><li><a href="gear.html"><span>🥾</span> Footwear</a></li><li><a href="gear.html"><span>🎒</span> Packs & Bags</a></li><li><a href="gear.html"><span>🧥</span> Outerwear</a></li><li><a href="gear.html"><span>🧣</span> Base Layers</a></li></ul></div>
+          <div class="mega-col"><p class="mega-col-title">By Brand</p><ul class="mega-links"><li><a href="gear.html"><span>🇨🇭</span> Mammut</a></li><li><a href="gear.html"><span>🇦🇹</span> Ortovox</a></li><li><a href="gear.html"><span>🇩🇪</span> Vaude</a></li><li><a href="gear.html"><span>🌍</span> Patagonia</a></li></ul></div>
+          <div class="mega-col"><p class="mega-col-title">Guides</p><ul class="mega-links"><li><a href="gear.html"><span>✦</span> What I Actually Use</a></li><li><a href="gear.html"><span>✦</span> Repair vs Replace</a></li><li><a href="gear.html"><span>✦</span> Buy Second Hand</a></li></ul></div>
+        </div>
+      </li>
+      <li class="nav-item"><a href="trails.html">By Train</a><div class="drop-menu"><a href="#">SBB Route Tips</a><a href="#">GA vs Halbtax</a><a href="#">Car-Free Weekends</a></div></li>
+      <li class="nav-item"><a href="#">Sustainability</a></li>
+      <li class="nav-item"><a href="#">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-search">🔍</button>
+      <a href="#" class="btn-nav">Newsletter</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-hero-bg">Gear</span>
+    <p class="breadcrumb"><a href="index.html">Home</a> <span>›</span> Gear Reviews</p>
+    <h1 class="page-title">Gear that <em>lasts.</em></h1>
+    <p class="page-desc">No gear I don't believe in. No brands I won't stand behind. Every recommendation chosen for longevity, repairability, and honest sustainability — not trends.</p>
+    <div class="page-hero-stats">
+      <div><p class="stat-num">18</p><p class="stat-label">Reviews</p></div>
+      <div><p class="stat-num">6</p><p class="stat-label">Brands Covered</p></div>
+      <div><p class="stat-num">0</p><p class="stat-label">Paid Placements</p></div>
+      <div><p class="stat-num">3+</p><p class="stat-label">Years Per Item</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY STRIP -->
+<div class="philosophy-strip">
+  <div class="philosophy-inner">
+    <div class="phil-item"><span class="phil-icon">🔧</span><span class="phil-text">Repairability matters</span></div>
+    <div class="phil-divider"></div>
+    <div class="phil-item"><span class="phil-icon">🌍</span><span class="phil-text">European-made preferred</span></div>
+    <div class="phil-divider"></div>
+    <div class="phil-item"><span class="phil-icon">🐑</span><span class="phil-text">Natural fibres where possible</span></div>
+    <div class="phil-divider"></div>
+    <div class="phil-item"><span class="phil-icon">♻️</span><span class="phil-text">Recycled materials over virgin</span></div>
+    <div class="phil-divider"></div>
+    <div class="phil-item"><span class="phil-icon">📅</span><span class="phil-text">Buy less, buy better</span></div>
+    <div class="phil-divider"></div>
+    <div class="phil-item"><span class="phil-icon">🚫</span><span class="phil-text">No Amazon, ever</span></div>
+  </div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active">All Gear</button>
+    <button class="filter-btn">🥾 Footwear</button>
+    <button class="filter-btn">🎒 Packs</button>
+    <button class="filter-btn">🧥 Outerwear</button>
+    <button class="filter-btn">🧣 Base Layers</button>
+    <button class="filter-btn">🧭 Navigation</button>
+    <button class="filter-btn">🇨🇭 Swiss Brands</button>
+    <button class="filter-btn">✦ I Own This</button>
+  </div>
+</div>
+
+<!-- MAIN + SIDEBAR -->
+<div class="gear-main">
+  <div class="gear-list">
+
+    <!-- FEATURED GEAR REVIEW -->
+    <article class="gear-feature reveal">
+      <div class="gear-feature-image">
+        <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="450" fill="#3d3028"/>
+          <!-- Boot illustration -->
+          <g transform="translate(80, 60)">
+            <!-- Boot shape -->
+            <path d="M80 300 L80 120 Q80 80 120 70 L200 65 Q240 62 250 90 L255 160 Q258 180 270 190 L340 195 Q360 196 360 220 L360 260 Q360 280 340 285 L80 300 Z" fill="#4a3828" stroke="rgba(244,240,230,0.2)" stroke-width="1.5"/>
+            <!-- sole -->
+            <path d="M80 300 L360 285 L370 305 Q375 320 360 325 L80 320 Q65 318 65 305 Z" fill="#2e2018" />
+            <!-- laces -->
+            <line x1="160" y1="100" x2="200" y2="98" stroke="rgba(244,240,230,0.4)" stroke-width="2"/>
+            <line x1="155" y1="120" x2="205" y2="118" stroke="rgba(244,240,230,0.4)" stroke-width="2"/>
+            <line x1="152" y1="140" x2="208" y2="138" stroke="rgba(244,240,230,0.4)" stroke-width="2"/>
+            <line x1="150" y1="160" x2="210" y2="158" stroke="rgba(244,240,230,0.4)" stroke-width="2"/>
+            <!-- mammut logo area -->
+            <circle cx="300" cy="200" r="25" fill="rgba(244,240,230,0.06)" stroke="rgba(244,240,230,0.15)" stroke-width="1"/>
+            <!-- GTX label -->
+            <rect x="240" y="235" width="60" height="22" rx="2" fill="rgba(74,107,143,0.4)"/>
+            <text x="270" y="250" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(244,240,230,0.7)" letter-spacing="1">GORE-TEX</text>
+          </g>
+          <!-- Background mountain faint -->
+          <polygon points="0,450 0,280 100,200 200,260 300,160 400,240 500,170 600,220 600,450" fill="rgba(46,42,34,0.4)"/>
+        </svg>
+      </div>
+      <div class="gear-feature-body">
+        <div class="gear-badges">
+          <span class="badge badge-swiss">🇨🇭 Swiss Brand</span>
+          <span class="badge badge-owned">✦ I Own This</span>
+        </div>
+        <p class="gear-brand">Mammut</p>
+        <h2 class="gear-name">Ducan High GTX Boot</h2>
+        <p class="gear-tagline">"The last hiking boot you'll buy for a decade."</p>
+        <p class="gear-desc">Three years in. 400+ kilometres across Swiss, Austrian and Italian terrain. I've had these resoled once at the Mammut service centre in Zürich. They came back better than new.</p>
+        <ul class="gear-why">
+          <li>Bluesign-certified materials throughout</li>
+          <li>Mammut repair service available (not disposable)</li>
+          <li>GORE-TEX waterproofing — genuinely bombproof</li>
+          <li>Made with recycled polyester lining</li>
+        </ul>
+        <div class="gear-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">5/5 — Would buy again without hesitation</span>
+        </div>
+        <div class="gear-cta">
+          <a href="#" class="btn-review">Read full review</a>
+          <a href="#" class="btn-brand">Mammut.com →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2-COLUMN GRID ROW -->
+    <div class="gear-grid-row">
+
+      <article class="gear-card reveal">
+        <div class="gear-card-image">
+          <svg viewBox="0 0 400 267" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="267" fill="#2e3d4a"/>
+            <!-- Jacket illustration -->
+            <g transform="translate(60,20)">
+              <path d="M50 220 L20 180 L0 120 L20 60 L60 40 L100 30 L140 30 L180 40 L220 60 L240 120 L220 180 L190 220 Z" fill="#3a5a6b" stroke="rgba(244,240,230,0.15)" stroke-width="1.5"/>
+              <path d="M100 30 L100 220" stroke="rgba(244,240,230,0.12)" stroke-width="2" stroke-dasharray="4,3"/>
+              <!-- zipper -->
+              <line x1="118" y1="30" x2="118" y2="200" stroke="rgba(244,240,230,0.25)" stroke-width="1.5"/>
+              <!-- hood -->
+              <path d="M60 40 Q80 5 140 5 Q175 5 180 40" fill="#304d5a" stroke="rgba(244,240,230,0.12)" stroke-width="1"/>
+              <!-- pocket -->
+              <rect x="145" y="120" width="50" height="35" rx="2" fill="rgba(244,240,230,0.06)" stroke="rgba(244,240,230,0.15)" stroke-width="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-badges"><span class="badge badge-repair">Repair Culture</span><span class="badge badge-owned">✦ I Own This</span></div>
+          <p class="gear-brand">Patagonia</p>
+          <h3 class="gear-name-sm">Torrentshell 3L Jacket</h3>
+          <p class="gear-desc">Ironclad Guarantee. PFC-free waterproofing. Recycled nylon. Patagonia will fix it for life — this is the only rain jacket model I'd recommend.</p>
+          <div class="gear-rating"><span class="stars">★★★★★</span></div>
+          <div class="gear-cta"><a href="#" class="btn-review">Read review</a></div>
+        </div>
+      </article>
+
+      <article class="gear-card reveal">
+        <div class="gear-card-image">
+          <svg viewBox="0 0 400 267" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="267" fill="#3d3020"/>
+            <!-- Backpack illustration -->
+            <g transform="translate(80, 15)">
+              <rect x="40" y="30" width="160" height="200" rx="20" fill="#5a4030" stroke="rgba(244,240,230,0.15)" stroke-width="1.5"/>
+              <!-- top handle -->
+              <path d="M105 30 Q120 15 135 30" stroke="rgba(244,240,230,0.3)" stroke-width="3" fill="none"/>
+              <!-- front pocket -->
+              <rect x="55" y="140" width="130" height="70" rx="8" fill="rgba(244,240,230,0.06)" stroke="rgba(244,240,230,0.15)" stroke-width="1"/>
+              <!-- shoulder straps -->
+              <path d="M60 30 L30 230" stroke="#3a2818" stroke-width="12" stroke-linecap="round"/>
+              <path d="M180 30 L210 230" stroke="#3a2818" stroke-width="12" stroke-linecap="round"/>
+              <!-- hip belt -->
+              <path d="M30 230 Q120 240 210 230" stroke="#3a2818" stroke-width="8" fill="none" stroke-linecap="round"/>
+              <!-- top zip -->
+              <path d="M55 55 Q120 45 185 55" stroke="rgba(244,240,230,0.2)" stroke-width="2" fill="none"/>
+            </g>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-badges"><span class="badge badge-eu">🇩🇪 German Made</span></div>
+          <p class="gear-brand">Vaude</p>
+          <h3 class="gear-name-sm">Brenta 35+5L Pack</h3>
+          <p class="gear-desc">Most sustainability certifications in the industry. Climate-neutral company. This pack will outlast most alternatives and can be repaired at any Vaude service point.</p>
+          <div class="gear-rating"><span class="stars">★★★★☆</span></div>
+          <div class="gear-cta"><a href="#" class="btn-review">Read review</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- SECOND GRID ROW -->
+    <div class="gear-grid-row">
+
+      <article class="gear-card reveal">
+        <div class="gear-card-image">
+          <svg viewBox="0 0 400 267" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="267" fill="#3a3a2e"/>
+            <!-- Merino base layer -->
+            <g transform="translate(90, 20)">
+              <path d="M30 220 L0 160 L10 80 L40 40 L90 25 L130 25 L170 40 L200 80 L210 160 L180 220 Z" fill="#6b7a5a" stroke="rgba(244,240,230,0.15)" stroke-width="1.5"/>
+              <path d="M90 25 L90 220" stroke="rgba(244,240,230,0.08)" stroke-width="1"/>
+              <!-- crew neck -->
+              <ellipse cx="105" cy="35" rx="35" ry="18" fill="#5a6a4a" stroke="rgba(244,240,230,0.15)" stroke-width="1"/>
+              <!-- texture lines suggesting wool -->
+              <line x1="30" y1="80" x2="180" y2="80" stroke="rgba(244,240,230,0.05)" stroke-width="1"/>
+              <line x1="20" y1="110" x2="190" y2="110" stroke="rgba(244,240,230,0.05)" stroke-width="1"/>
+              <line x1="15" y1="140" x2="195" y2="140" stroke="rgba(244,240,230,0.05)" stroke-width="1"/>
+              <line x1="10" y1="170" x2="200" y2="170" stroke="rgba(244,240,230,0.05)" stroke-width="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-badges"><span class="badge badge-nat">🐑 Natural Fibre</span></div>
+          <p class="gear-brand">Ortovox</p>
+          <h3 class="gear-name-sm">185 Rock'N'Wool Merino</h3>
+          <p class="gear-desc">Austrian merino sourced with strict animal welfare standards. Biodegrades at end of life. Regulates temperature better than any synthetic I've tried.</p>
+          <div class="gear-rating"><span class="stars">★★★★★</span></div>
+          <div class="gear-cta"><a href="#" class="btn-review">Read review</a></div>
+        </div>
+      </article>
+
+      <article class="gear-card reveal">
+        <div class="gear-card-image">
+          <svg viewBox="0 0 400 267" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="267" fill="#2e3a30"/>
+            <!-- Trekking poles illustration -->
+            <g>
+              <!-- Pole 1 -->
+              <line x1="130" y1="20" x2="80" y2="260" stroke="#5a6a4a" stroke-width="8" stroke-linecap="round"/>
+              <ellipse cx="125" cy="35" rx="18" ry="12" fill="#3a4a2a" stroke="rgba(244,240,230,0.2)" stroke-width="1"/>
+              <circle cx="83" cy="248" r="12" fill="#3a4a2a" stroke="rgba(244,240,230,0.15)" stroke-width="1"/>
+              <!-- Pole 2 -->
+              <line x1="270" y1="20" x2="320" y2="260" stroke="#5a6a4a" stroke-width="8" stroke-linecap="round"/>
+              <ellipse cx="275" cy="35" rx="18" ry="12" fill="#3a4a2a" stroke="rgba(244,240,230,0.2)" stroke-width="1"/>
+              <circle cx="317" cy="248" r="12" fill="#3a4a2a" stroke="rgba(244,240,230,0.15)" stroke-width="1"/>
+              <!-- Leki logo area -->
+              <rect x="165" y="110" width="70" height="40" rx="4" fill="rgba(244,240,230,0.06)" stroke="rgba(244,240,230,0.1)" stroke-width="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-badges"><span class="badge badge-eu">🇩🇪 German Made</span></div>
+          <p class="gear-brand">Leki</p>
+          <h3 class="gear-name-sm">Micro Vario Carbon Poles</h3>
+          <p class="gear-desc">Carbon fibre, foldable for the train, and Leki's SpeedLock system means no slipping mid-descent. Replaceable tips, straps, and baskets — built to be repaired.</p>
+          <div class="gear-rating"><span class="stars">★★★★☆</span></div>
+          <div class="gear-cta"><a href="#" class="btn-review">Read review</a></div>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-widget reveal">
+      <p class="widget-title">Browse by brand</p>
+      <div class="brand-list">
+        <div class="brand-item"><span class="brand-name"><span>🇨🇭</span> Mammut</span><span class="brand-count">4 reviews</span></div>
+        <div class="brand-item"><span class="brand-name"><span>🌍</span> Patagonia</span><span class="brand-count">3 reviews</span></div>
+        <div class="brand-item"><span class="brand-name"><span>🇩🇪</span> Vaude</span><span class="brand-count">3 reviews</span></div>
+        <div class="brand-item"><span class="brand-name"><span>🇦🇹</span> Ortovox</span><span class="brand-count">3 reviews</span></div>
+        <div class="brand-item"><span class="brand-name"><span>🇸🇪</span> Fjällräven</span><span class="brand-count">2 reviews</span></div>
+        <div class="brand-item"><span class="brand-name"><span>🇨🇭</span> On Running</span><span class="brand-count">1 review</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-widget reveal">
+      <p class="widget-title">Certifications explained</p>
+      <div class="cert-grid">
+        <div class="cert-item"><div class="cert-icon">🔵</div><p class="cert-name">Bluesign</p></div>
+        <div class="cert-item"><div class="cert-icon">🌿</div><p class="cert-name">Fair Wear</p></div>
+        <div class="cert-item"><div class="cert-icon">🐑</div><p class="cert-name">ZQ Merino</p></div>
+        <div class="cert-item"><div class="cert-icon">🌱</div><p class="cert-name">GOTS</p></div>
+      </div>
+    </div>
+
+    <div class="sidebar-widget reveal">
+      <p class="widget-title">Affiliate disclosure</p>
+      <div class="disclosure-box">
+        <p class="disclosure-text">Some links on this page are affiliate links — if you buy through them, I earn a small commission at no extra cost to you. I only recommend gear I've personally used or thoroughly researched. No brand has paid for placement here.</p>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div><div class="footer-logo">Sentier<span>.</span></div><p class="footer-tagline">Trails, sustainable gear, and every route reachable by train.</p></div>
+    <div><p class="footer-col-title">Explore</p><ul class="footer-links"><li><a href="trails.html">Trail Guides</a></li><li><a href="gear.html">Gear Reviews</a></li><li><a href="#">By Train</a></li><li><a href="#">Sustainability</a></li></ul></div>
+    <div><p class="footer-col-title">Regions</p><ul class="footer-links"><li><a href="#">Bernese Oberland</a></li><li><a href="#">Graubünden</a></li><li><a href="#">Valais</a></li><li><a href="#">Ticino</a></li></ul></div>
+    <div><p class="footer-col-title">About</p><ul class="footer-links"><li><a href="#">About Sentier</a></li><li><a href="#">Our Philosophy</a></li><li><a href="#">Work With Us</a></li><li><a href="#">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Sentier. Made in Switzerland.</p>
+    <p class="footer-copy">Privacy · Affiliate Disclosure</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(() => e.target.classList.add('up'), i*60); });
+  }, {threshold:0.08});
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
