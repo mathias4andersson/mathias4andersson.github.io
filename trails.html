@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trail Guides — Sentier</title>
+  <meta name="description" content="Hiking trail guides for the Bernese Oberland and Switzerland, all reachable by public transport. With AllTrails links and SBB directions.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-hero { background: var(--earth); }
+
+    .trails-main {
+      max-width: 1300px; margin: 0 auto;
+      padding: 3rem 2.5rem 5rem;
+      display: grid; grid-template-columns: 1fr 300px; gap: 4rem;
+    }
+    .trail-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    /* Section divider */
+    .trail-section-heading {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 0 0.5rem; margin-top: 1rem;
+    }
+    .trail-section-heading h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--earth); white-space: nowrap;
+    }
+    .trail-section-heading h2 em { font-style: italic; color: var(--moss); }
+    .trail-section-heading::after { content: ''; flex: 1; height: 1px; background: var(--mist); }
+    .trail-section-desc {
+      font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 300;
+      color: var(--stone); line-height: 1.65; margin-bottom: 1.5rem; max-width: 680px;
+    }
+
+    /* Trail cards */
+    .trail-feature {
+      display: grid; grid-template-columns: 1fr 1fr; background: var(--parchment);
+      overflow: hidden; cursor: pointer; transition: transform 0.25s;
+    }
+    .trail-feature:hover { transform: translateY(-3px); }
+    .trail-feature-image { overflow: hidden; }
+    .trail-feature-image svg { width: 100%; height: 100%; display: block; transition: transform 0.4s; }
+    .trail-feature:hover .trail-feature-image svg { transform: scale(1.04); }
+    .trail-feature-body { padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+
+    .trail-card-sm {
+      display: grid; grid-template-columns: 200px 1fr; background: var(--parchment);
+      overflow: hidden; cursor: pointer; transition: transform 0.25s;
+    }
+    .trail-card-sm:hover { transform: translateY(-2px); }
+    .trail-card-sm-image { overflow: hidden; }
+    .trail-card-sm-image svg { width: 100%; height: 100%; display: block; transition: transform 0.4s; }
+    .trail-card-sm:hover .trail-card-sm-image svg { transform: scale(1.05); }
+    .trail-card-sm-body { padding: 1.5rem 1.8rem; }
+
+    .trail-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+    .trail-title-lg { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--earth); line-height: 1.2; margin-bottom: 0.8rem; }
+    .trail-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--earth); line-height: 1.3; margin-bottom: 0.6rem; }
+    .trail-excerpt { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.88rem; color: var(--stone); line-height: 1.7; margin-bottom: 1rem; }
+    .trail-stats { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+    .trail-stat { font-family: 'Jost', sans-serif; font-size: 0.75rem; color: var(--stone); display: flex; align-items: center; gap: 0.3rem; }
+    .trail-stat strong { color: var(--earth); }
+
+    /* External links row */
+    .trail-links { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .trail-ext-link {
+      font-family: 'Jost', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.45rem 0.9rem;
+      display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.2s;
+    }
+    .trail-ext-link.alltrails { background: #3d7a3d; color: #fff; }
+    .trail-ext-link.alltrails:hover { background: #2d5a2d; }
+    .trail-ext-link.sbb { background: #eb0000; color: #fff; }
+    .trail-ext-link.sbb:hover { background: #c00000; }
+
+    /* Explore section note */
+    .explore-note {
+      background: var(--parchment); border-left: 3px solid var(--lichen);
+      padding: 1rem 1.2rem; margin-bottom: 1.5rem;
+      font-family: 'Jost', sans-serif; font-size: 0.82rem; color: var(--stone); line-height: 1.6;
+    }
+
+    /* Sidebar */
+    .region-card { background: var(--parchment); padding: 1.2rem; margin-bottom: 0.5rem; cursor: pointer; transition: background 0.2s; }
+    .region-card:hover { background: var(--mist); }
+    .region-name { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--earth); margin-bottom: 0.2rem; }
+    .region-count { font-family: 'Jost', sans-serif; font-size: 0.72rem; color: var(--stone); }
+    .transport-widget { background: var(--moss); color: var(--cream); padding: 1.5rem; }
+    .tw-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .tw-text { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.82rem; color: var(--lichen); line-height: 1.6; margin-bottom: 1rem; }
+    .tw-btn { font-family: 'Jost', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.3); color: var(--cream); padding: 0.5rem 1rem; display: inline-block; transition: border-color 0.2s; }
+    .tw-btn:hover { border-color: var(--lichen); }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-hero-bg">Trails</span>
+    <p class="breadcrumb"><a href="index.html">Home</a> <span>›</span> Trail Guides</p>
+    <h1 class="page-title">Swiss Trail <em>Guides</em></h1>
+    <p class="page-desc">Every route reachable by public transport. Every guide written from boots on the ground. I only recommend trails I have hiked myself.</p>
+    <div class="page-hero-stats">
+      <div><p class="stat-num">1</p><p class="stat-label">Full guide published</p></div>
+      <div><p class="stat-num">100%</p><p class="stat-label">Car-free access</p></div>
+      <div><p class="stat-num">Growing</p><p class="stat-label">More trails soon</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active">All Trails</button>
+    <button class="filter-btn">✦ Hiked by me</button>
+    <button class="filter-btn">🟢 Easy</button>
+    <button class="filter-btn">🟡 Moderate</button>
+    <button class="filter-btn">🔴 Challenging</button>
+    <button class="filter-btn">🚂 SBB Direct</button>
+    <button class="filter-btn">🚌 PostBus</button>
+    <button class="filter-btn">🏔 Bernese Oberland</button>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="trails-main">
+  <div class="trail-list">
+
+    <!-- SECTION: HIKED -->
+    <div id="hiked">
+      <div class="trail-section-heading reveal">
+        <h2>Trails I have <em>hiked</em></h2>
+      </div>
+      <p class="trail-section-desc reveal">These are routes I have walked personally. The descriptions, transport directions and notes are from my own experience on the trail.</p>
+
+      <article class="trail-feature reveal">
+        <div class="trail-feature-image">
+          <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="600" height="450" fill="#3d5032"/>
+            <polygon points="0,450 0,255 110,155 225,235 350,95 475,195 585,118 600,128 600,450" fill="#2a3d20"/>
+            <polygon points="350,95 320,162 380,162" fill="rgba(244,240,230,0.92)"/>
+            <polygon points="585,118 562,170 608,170" fill="rgba(244,240,230,0.72)"/>
+            <ellipse cx="155" cy="355" rx="130" ry="45" fill="rgba(107,143,113,0.48)"/>
+            <path d="M105 450 Q168 385 238 352 Q308 319 355 282 Q402 245 440 212" stroke="rgba(244,240,230,0.28)" stroke-width="2.5" fill="none" stroke-dasharray="7,5"/>
+            <g fill="#1e2d18">
+              <polygon points="28,450 28,394 45,360 62,394 62,450"/>
+              <polygon points="512,450 512,400 527,368 542,400 542,450"/>
+              <polygon points="556,450 556,408 569,378 582,408 582,450"/>
+            </g>
+            <circle cx="460" cy="68" r="32" fill="rgba(244,240,230,0.08)"/>
+          </svg>
+        </div>
+        <div class="trail-feature-body">
+          <div class="trail-tags">
+            <span class="tag hiked">✦ I hiked this</span>
+            <span class="tag green">🚂 SBB Direct</span>
+            <span class="tag">Moderate</span>
+            <span class="tag">Bernese Oberland</span>
+          </div>
+          <h2 class="trail-title-lg">Oeschinensee Loop, Kandersteg</h2>
+          <p class="trail-excerpt">A glacial lake surrounded by sheer limestone walls reaching over 2,000 metres. One of the most beautiful half-days I have spent in the Bernese Oberland. The colour of the water needs to be seen to be believed.</p>
+          <div class="trail-stats">
+            <span class="trail-stat"><strong>11 km</strong> distance</span>
+            <span class="trail-stat"><strong>↑ 750m</strong> ascent</span>
+            <span class="trail-stat"><strong>4–5h</strong> duration</span>
+          </div>
+          <div class="trail-links">
+            <a href="https://www.alltrails.com/trail/switzerland/bern/oeschinensee" target="_blank" rel="noopener" class="trail-ext-link alltrails">🗺 View on AllTrails</a>
+            <a href="https://www.sbb.ch/en/buying/pages/fahrplan/fahrplan.xhtml?nach=Kandersteg" target="_blank" rel="noopener" class="trail-ext-link sbb">🚂 SBB to Kandersteg</a>
+          </div>
+          <a href="#" class="read-more">Read the full guide</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- SECTION: TO EXPLORE -->
+    <div id="explore" style="margin-top:2rem">
+      <div class="trail-section-heading reveal">
+        <h2>Trails to <em>explore</em></h2>
+      </div>
+      <div class="explore-note reveal">These are trails I have researched and plan to hike. I include them here for inspiration, but I will only publish a full guide once I have walked them myself. AllTrails and SBB links are provided so you can plan ahead.</div>
+
+      <article class="trail-card-sm reveal">
+        <div class="trail-card-sm-image">
+          <svg viewBox="0 0 200 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="180" fill="#4a6040"/>
+            <polygon points="0,180 0,110 45,72 90,102 135,55 175,88 200,70 200,180" fill="#2e4028"/>
+            <polygon points="135,55 116,98 154,98" fill="rgba(244,240,230,0.82)"/>
+          </svg>
+        </div>
+        <div class="trail-card-sm-body">
+          <div class="trail-tags">
+            <span class="tag">◎ Not yet hiked</span>
+            <span class="tag">🚋 Rack Railway</span>
+            <span class="tag">Challenging</span>
+          </div>
+          <h3 class="trail-title">Schynige Platte to First</h3>
+          <p class="trail-excerpt">14km of exposed alpine ridge with front-row views of the Eiger, Mönch and Jungfrau. On my list for summer 2025.</p>
+          <div class="trail-stats">
+            <span class="trail-stat"><strong>14 km</strong></span>
+            <span class="trail-stat"><strong>↑ 800m</strong></span>
+            <span class="trail-stat"><strong>6–7h</strong></span>
+          </div>
+          <div class="trail-links">
+            <a href="https://www.alltrails.com/trail/switzerland/bern/schynige-platte-to-first" target="_blank" rel="noopener" class="trail-ext-link alltrails">🗺 AllTrails</a>
+            <a href="https://www.sbb.ch/en/buying/pages/fahrplan/fahrplan.xhtml?nach=Wilderswil" target="_blank" rel="noopener" class="trail-ext-link sbb">🚂 SBB to Wilderswil</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="trail-card-sm reveal">
+        <div class="trail-card-sm-image">
+          <svg viewBox="0 0 200 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="180" fill="#5c7a52"/>
+            <polygon points="0,180 0,115 40,78 80,108 120,62 162,95 200,72 200,180" fill="#2e4028"/>
+            <polygon points="120,62 100,104 140,104" fill="rgba(244,240,230,0.8)"/>
+            <g fill="#1e2d18"><polygon points="10,180 10,152 18,135 26,152 26,180"/></g>
+          </svg>
+        </div>
+        <div class="trail-card-sm-body">
+          <div class="trail-tags">
+            <span class="tag">◎ Not yet hiked</span>
+            <span class="tag green">🚂 SBB + PostBus</span>
+            <span class="tag">Moderate</span>
+          </div>
+          <h3 class="trail-title">Niesen Panorama Trail</h3>
+          <p class="trail-excerpt">The pyramid of the Bernese Oberland. Cable car up, hike the ridge, incredible views over Lake Thun.</p>
+          <div class="trail-stats">
+            <span class="trail-stat"><strong>12 km</strong></span>
+            <span class="trail-stat"><strong>↑ 650m</strong></span>
+            <span class="trail-stat"><strong>4–5h</strong></span>
+          </div>
+          <div class="trail-links">
+            <a href="https://www.alltrails.com/trail/switzerland/bern/niesen" target="_blank" rel="noopener" class="trail-ext-link alltrails">🗺 AllTrails</a>
+            <a href="https://www.sbb.ch/en/buying/pages/fahrplan/fahrplan.xhtml?nach=Mülenen" target="_blank" rel="noopener" class="trail-ext-link sbb">🚂 SBB to Mülenen</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="trail-card-sm reveal">
+        <div class="trail-card-sm-image">
+          <svg viewBox="0 0 200 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="180" fill="#4a5c6b"/>
+            <ellipse cx="100" cy="162" rx="90" ry="28" fill="rgba(74,107,143,0.45)"/>
+            <polygon points="0,180 0,115 50,78 100,108 145,58 185,92 200,78 200,180" fill="#2e3d4a"/>
+            <polygon points="145,58 124,102 166,102" fill="rgba(244,240,230,0.82)"/>
+          </svg>
+        </div>
+        <div class="trail-card-sm-body">
+          <div class="trail-tags">
+            <span class="tag">◎ Not yet hiked</span>
+            <span class="tag green">🚂 SBB Direct</span>
+            <span class="tag">Easy</span>
+          </div>
+          <h3 class="trail-title">Harder Kulm Circuit, Interlaken</h3>
+          <p class="trail-excerpt">The viewpoint above Interlaken overlooking both Lake Thun and Lake Brienz. Accessible from Interlaken Ost station.</p>
+          <div class="trail-stats">
+            <span class="trail-stat"><strong>8 km</strong></span>
+            <span class="trail-stat"><strong>↑ 580m</strong></span>
+            <span class="trail-stat"><strong>3h</strong></span>
+          </div>
+          <div class="trail-links">
+            <a href="https://www.alltrails.com/trail/switzerland/bern/harder-kulm" target="_blank" rel="noopener" class="trail-ext-link alltrails">🗺 AllTrails</a>
+            <a href="https://www.sbb.ch/en/buying/pages/fahrplan/fahrplan.xhtml?nach=Interlaken+Ost" target="_blank" rel="noopener" class="trail-ext-link sbb">🚂 SBB to Interlaken</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-widget reveal">
+      <p class="widget-title">Regions</p>
+      <div class="region-card"><p class="region-name">🏔 Bernese Oberland</p><p class="region-count">Active — more coming</p></div>
+      <div class="region-card" style="opacity:0.5"><p class="region-name">⛰ Graubünden</p><p class="region-count">Coming soon</p></div>
+      <div class="region-card" style="opacity:0.5"><p class="region-name">🌿 Ticino</p><p class="region-count">Coming soon</p></div>
+      <div class="region-card" style="opacity:0.5"><p class="region-name">🌲 Valais</p><p class="region-count">Coming soon</p></div>
+    </div>
+
+    <div class="sidebar-widget reveal">
+      <div class="transport-widget">
+        <p class="tw-title">Planning by train?</p>
+        <p class="tw-text">Every guide includes exact SBB connections, PostBus times, and tips for GA and Halbtax holders.</p>
+        <a href="bytrain.html" class="tw-btn">Transport guide →</a>
+      </div>
+    </div>
+
+    <div class="sidebar-widget reveal">
+      <p class="widget-title">Trail key</p>
+      <ul class="widget-list">
+        <li><a href="#hiked"><span class="tag hiked" style="font-size:0.58rem">✦ I hiked this</span> Full guide available</a></li>
+        <li><a href="#explore"><span class="tag" style="font-size:0.58rem">◎ Not yet hiked</span> Research only</a></li>
+      </ul>
+    </div>
+
+  </aside>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="shared.js"></script>
+<script>
+  document.getElementById('nav-placeholder').innerHTML = getNavHTML('trails');
+  document.getElementById('footer-placeholder').innerHTML = getFooterHTML();
+  document.addEventListener('DOMContentLoaded', () => { initReveal(); initNewsletter(); initFilters(); });
+</script>
+</body>
+</html>
