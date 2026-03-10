@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Mathias — By Train By Foot</title>
+  <meta name="description" content="The story behind By Train By Foot. Mathias on growing up hiking in Denmark and Norway, moving to Switzerland, and why he travels entirely by public transport.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-hero { background: var(--earth); }
+
+    /* STORY SECTION */
+    .about-story {
+      max-width: 1300px; margin: 0 auto; padding: 5rem 2.5rem;
+      display: grid; grid-template-columns: 380px 1fr; gap: 6rem; align-items: start;
+    }
+    .about-portrait-col { position: sticky; top: calc(var(--nav-h) + 2rem); }
+    .about-portrait {
+      aspect-ratio: 3/4; background: var(--earth); overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .about-portrait svg { width: 100%; height: 100%; display: block; }
+    .portrait-caption { font-family: 'Jost', sans-serif; font-size: 0.75rem; color: var(--stone); letter-spacing: 0.08em; }
+    .about-quick { display: flex; flex-direction: column; gap: 0; margin-top: 2rem; border-top: 1px solid var(--mist); }
+    .about-quick-item { display: flex; flex-direction: column; padding: 0.8rem 0; border-bottom: 1px solid var(--mist); }
+    .about-quick-label { font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lichen); margin-bottom: 0.2rem; }
+    .about-quick-value { font-family: 'Jost', sans-serif; font-size: 0.88rem; color: var(--stone); }
+
+    /* STORY TEXT */
+    .about-text-col {}
+    .about-chapter { margin-bottom: 3.5rem; }
+    .about-chapter-eyebrow { font-family: 'Jost', sans-serif; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--lichen); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.8rem; }
+    .about-chapter-eyebrow::before { content: ''; width: 1.5rem; height: 1px; background: var(--lichen); }
+    .about-chapter-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--earth); line-height: 1.2; margin-bottom: 1.4rem; }
+    .about-chapter-title em { font-style: italic; color: var(--moss); }
+    .about-para { font-family: 'Libre Baskerville', serif; font-size: 1rem; color: var(--stone); line-height: 1.9; margin-bottom: 1.2rem; }
+
+    /* Pull quote */
+    .about-pull { border-left: 3px solid var(--moss); padding: 0.8rem 1.8rem; margin: 2rem 0; }
+    .about-pull p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; color: var(--earth); line-height: 1.5; }
+
+    /* Signature */
+    .about-sig-block { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--mist); }
+    .about-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.8rem; color: var(--bark); margin-bottom: 0.3rem; }
+    .about-sig-title { font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--parchment); padding: 4rem 2.5rem;
+    }
+    .contact-inner { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--earth); margin-bottom: 1rem; }
+    .contact-title em { font-style: italic; color: var(--moss); }
+    .contact-text { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.92rem; color: var(--stone); line-height: 1.8; margin-bottom: 1.5rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 0.8rem; }
+    .contact-item { display: flex; align-items: center; gap: 0.8rem; font-family: 'Jost', sans-serif; font-size: 0.88rem; color: var(--stone); }
+    .contact-item span:first-child { font-size: 1.1rem; }
+    .contact-item a { color: var(--moss); border-bottom: 1px solid var(--lichen); transition: border-color 0.2s; }
+    .contact-item a:hover { border-color: var(--moss); }
+    .collab-box { background: var(--earth); color: var(--cream); padding: 2rem; }
+    .collab-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.8rem; }
+    .collab-text { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.88rem; color: var(--mist); line-height: 1.75; margin-bottom: 1.5rem; }
+    .collab-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .collab-list li { font-family: 'Jost', sans-serif; font-size: 0.85rem; color: var(--lichen); display: flex; align-items: center; gap: 0.5rem; }
+    .collab-list li::before { content: '✦'; font-size: 0.6rem; }
+    .collab-note { font-family: 'Jost', sans-serif; font-size: 0.72rem; color: var(--stone); font-style: italic; }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-hero-bg">Story</span>
+    <p class="breadcrumb"><a href="index.html">Home</a> <span>›</span> About</p>
+    <h1 class="page-title">About <em>Mathias.</em></h1>
+    <p class="page-desc">The person behind By Train By Foot. Where the love of hiking came from, why I travel by train, and what I am trying to do with this site.</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<div class="about-story">
+
+  <!-- PORTRAIT COL -->
+  <div class="about-portrait-col reveal">
+    <div class="about-portrait">
+      <svg viewBox="0 0 380 507" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+        <rect width="380" height="507" fill="#3d5032"/>
+        <polygon points="0,507 0,298 80,218 165,278 262,162 348,248 380,228 380,507" fill="#2a3d20"/>
+        <polygon points="262,162 236,228 288,228" fill="rgba(244,240,230,0.9)"/>
+        <g fill="#1e2d18">
+          <polygon points="18,507 18,448 33,416 48,448 48,507"/>
+          <polygon points="330,507 330,454 344,422 358,454 358,507"/>
+        </g>
+        <!-- hiker silhouette more detailed -->
+        <g transform="translate(158, 255)">
+          <circle cx="22" cy="0" r="12" fill="rgba(244,240,230,0.75)"/>
+          <!-- body -->
+          <path d="M14 12 Q22 48 22 55 Q22 48 30 12" fill="rgba(244,240,230,0.65)" stroke="rgba(244,240,230,0.65)" stroke-width="1"/>
+          <!-- arms -->
+          <line x1="14" y1="22" x2="2" y2="38" stroke="rgba(244,240,230,0.65)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="30" y1="22" x2="42" y2="38" stroke="rgba(244,240,230,0.65)" stroke-width="3" stroke-linecap="round"/>
+          <!-- legs -->
+          <line x1="18" y1="55" x2="10" y2="78" stroke="rgba(244,240,230,0.65)" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="26" y1="55" x2="34" y2="78" stroke="rgba(244,240,230,0.65)" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- trekking pole -->
+          <line x1="2" y1="38" x2="-8" y2="78" stroke="rgba(244,240,230,0.55)" stroke-width="2" stroke-linecap="round"/>
+          <!-- pack suggestion -->
+          <rect x="26" y="14" width="14" height="22" rx="3" fill="rgba(244,240,230,0.4)"/>
+        </g>
+        <text x="190" y="475" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="13" fill="rgba(244,240,230,0.38)" letter-spacing="1">Kandersteg, 2024</text>
+      </svg>
+    </div>
+    <p class="portrait-caption">Oeschinensee, Bernese Oberland</p>
+
+    <div class="about-quick">
+      <div class="about-quick-item">
+        <span class="about-quick-label">Based in</span>
+        <span class="about-quick-value">Bern, Switzerland</span>
+      </div>
+      <div class="about-quick-item">
+        <span class="about-quick-label">Originally from</span>
+        <span class="about-quick-value">Denmark</span>
+      </div>
+      <div class="about-quick-item">
+        <span class="about-quick-label">Hiking since</span>
+        <span class="about-quick-value">Childhood</span>
+      </div>
+      <div class="about-quick-item">
+        <span class="about-quick-label">Transport</span>
+        <span class="about-quick-value">Train, bus, on foot</span>
+      </div>
+      <div class="about-quick-item">
+        <span class="about-quick-label">Favourite region</span>
+        <span class="about-quick-value">Bernese Oberland</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEXT COL -->
+  <div class="about-text-col">
+
+    <div class="about-chapter reveal">
+      <p class="about-chapter-eyebrow">The beginning</p>
+      <h2 class="about-chapter-title">Some things start with chocolate <em>and mountains.</em></h2>
+      <p class="about-para">My dad took me hiking as a kid in Denmark, long days through forests and along the coast, stopping for chocolate breaks along the way. Those trips became some of my fondest memories. There was something about being small in a large landscape that stuck with me, a feeling of proportion that is difficult to find anywhere else.</p>
+      <p class="about-para">Later my family discovered Norway, and I fell in love with something rawer: the scale of the mountains, the silence of the fjords, the way the light sits differently in the high north. We hiked through fjord country and spent nights in remote huts with no one else around.</p>
+      <p class="about-para">The trip that sealed it was five nights around Lysefjorden with my dad and uncle. We carried everything we needed, slept in the wild, and walked through rolling mountains watching reindeer move across the horizon. No phone signal. No schedule beyond the weather and the light. That is still the standard I measure other trips against.</p>
+    </div>
+
+    <div class="about-chapter reveal">
+      <p class="about-chapter-eyebrow">Switzerland</p>
+      <h2 class="about-chapter-title">The Alps are as extraordinary <em>as advertised.</em></h2>
+      <p class="about-para">I moved to Switzerland for love. My girlfriend is Swiss, and what started as visits became a life here. I discovered quickly that the mountains are everything people say they are, and that Swiss mountain food in a Swiss mountain hut is near unbeatable.</p>
+      <p class="about-para">What surprised me was something else entirely: unlike Scandinavia, where freedom to roam gives you the right to walk and camp almost anywhere, wild camping in Switzerland is largely off the table. The mountains are beautiful but access works differently here.</p>
+      <p class="about-para">But what Switzerland offers instead is something remarkable. A public transport network so comprehensive, so precise, so well-connected to every valley and village, that almost every trailhead in the country is reachable without a car. I have not needed one.</p>
+
+      <div class="about-pull">
+        <p>Unlike in Norway, most countries in Europe do not have freedom to roam. But Switzerland gives you something else: a train to almost everywhere.</p>
+      </div>
+    </div>
+
+    <div class="about-chapter reveal">
+      <p class="about-chapter-eyebrow">The philosophy</p>
+      <h2 class="about-chapter-title">That is not an accident. <em>It is a choice.</em></h2>
+      <p class="about-para">I lived in Copenhagen for nearly a decade and never owned a car. At first it was practical. Over time it became something I believed in. Climate change is not abstract to me, the glaciers I hike past are visibly smaller than in photographs from twenty years ago. Flying short distances around Europe is a luxury the planet cannot sustain. So I take the train.</p>
+      <p class="about-para">It is slower, yes. But slow travel suits hiking. You arrive already in the right frame of mind, with a book read and the landscape already changing outside the window. My friends find this a running joke. I find it a genuinely better way to travel.</p>
+      <p class="about-para">The same thinking applies to gear. The outdoor industry has an unfortunate habit of encouraging people to buy cheap, replace often, and chase ultralight at the expense of durability. I do the opposite. I save up, buy well, and expect things to last a decade. I borrow and rent gear I want to test honestly before recommending it. Nothing on this site is here because someone paid for it to be here.</p>
+    </div>
+
+    <div class="about-chapter reveal">
+      <p class="about-chapter-eyebrow">This site</p>
+      <h2 class="about-chapter-title">What <em>By Train By Foot</em> is for.</h2>
+      <p class="about-para">By Train By Foot is my attempt to close the gap between the values hikers say they hold and the way they actually travel. I only write about trails I have walked myself. I only recommend gear I would genuinely buy or have already bought. Every route on this site comes with exact public transport directions because that is the only way I get there.</p>
+      <p class="about-para">If you take one thing from this site, I hope it is this: slow travel fits very well into the kind of trips you already want to take. The train is not a compromise. The mountain hut is not a sacrifice. The gear that lasts ten years is not an extravagance.</p>
+      <p class="about-para">The nature we love hiking through exists outside of us. We should travel accordingly.</p>
+
+      <div class="about-sig-block">
+        <p class="about-sig">Mathias</p>
+        <p class="about-sig-title">By Train By Foot · Bern, Switzerland</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <h2 class="contact-title">Get in <em>touch.</em></h2>
+      <p class="contact-text">I am always happy to hear from fellow hikers, readers with questions about a trail or gear, or anyone who wants to talk about slow travel in Switzerland.</p>
+      <div class="contact-items">
+        <div class="contact-item"><span>📍</span><span>Based in Bern, Switzerland</span></div>
+        <div class="contact-item"><span>✉️</span><span>hello@bytrainbyfoot.com <span style="color:var(--lichen);font-size:0.75rem">(coming soon)</span></span></div>
+        <div class="contact-item"><span>📸</span><span>Instagram coming soon</span></div>
+      </div>
+    </div>
+    <div class="collab-box reveal">
+      <p class="collab-title">Working with brands</p>
+      <p class="collab-text">I am open to working with brands and retailers whose values align with what By Train By Foot stands for. What that means in practice:</p>
+      <ul class="collab-list">
+        <li>Gear loans for honest, long-term reviews</li>
+        <li>Affiliate partnerships with transparent disclosure</li>
+        <li>Trail-focused content for sustainable brands</li>
+      </ul>
+      <p class="collab-text">What it does not mean: paid placements, positive reviews in exchange for product, or promotion of brands whose practices contradict this site's values.</p>
+      <p class="collab-note">By Train By Foot is early stage. I am building content first.</p>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="shared.js"></script>
+<script>
+  document.getElementById('nav-placeholder').innerHTML = getNavHTML('about');
+  document.getElementById('footer-placeholder').innerHTML = getFooterHTML();
+  document.addEventListener('DOMContentLoaded', () => { initReveal(); initNewsletter(); });
+</script>
+</body>
+</html>
