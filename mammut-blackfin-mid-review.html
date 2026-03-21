@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mammut Blackfin Mid Review | By Train By Foot</title>
+  <meta name="description" content="An honest review of the Mammut Blackfin Mid winter boot after almost two years and 20-plus day hikes. What works, what doesn't, and whether it's worth the price.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .article-hero { background: linear-gradient(135deg, #3d3028 0%, #5a4030 50%, #4a3828 100%); padding: 80px 0 60px; color: white; }
+    .article-hero-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+    .article-breadcrumb { font-size: 0.8rem; opacity: 0.7; margin-bottom: 1.2rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .article-breadcrumb a { color: white; text-decoration: none; }
+    .article-breadcrumb a:hover { opacity: 0.9; }
+    .article-tag { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1.2rem; }
+    .article-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+    .article-hero .subtitle { font-size: 1.1rem; opacity: 0.85; line-height: 1.6; max-width: 620px; font-weight: 300; }
+    .article-meta { display: flex; gap: 2rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.82rem; opacity: 0.75; flex-wrap: wrap; }
+    .article-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+    .article-stats { background: #f5f0eb; border-bottom: 1px solid #e8e0d5; }
+    .stats-grid { max-width: 860px; margin: 0 auto; padding: 1.5rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1.5rem; }
+    .stat-item { text-align: center; }
+    .stat-value { font-size: 1.3rem; font-weight: 500; color: #3d3028; display: block; }
+    .stat-label { font-size: 0.72rem; color: #7a7065; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
+
+    .article-body { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: start; }
+    @media (max-width: 768px) { .article-body { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .article-content p { font-size: 1.05rem; line-height: 1.8; color: #3a3530; margin-bottom: 1.4rem; }
+    .article-content h2 { font-size: 1.3rem; font-weight: 500; color: #3d3028; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e8e0d5; }
+
+    .image-placeholder { background: linear-gradient(135deg, #e8e4de 0%, #d5cfc7 100%); border-radius: 8px; aspect-ratio: 16/10; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2rem 0; color: #8a8078; }
+    .image-placeholder .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .image-placeholder .label { font-size: 0.82rem; }
+    .image-placeholder.wide { aspect-ratio: 21/9; }
+
+    .tip-box { background: #f5f0ea; border-left: 4px solid #5a4030; border-radius: 0 8px 8px 0; padding: 1.2rem 1.5rem; margin: 2rem 0; }
+    .tip-box .tip-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #5a4030; font-weight: 600; margin-bottom: 0.5rem; }
+    .tip-box p { margin: 0; font-size: 0.95rem !important; color: #3a3530; }
+
+    .verdict-box { background: #3d3028; color: white; border-radius: 12px; padding: 2rem; margin: 2.5rem 0; }
+    .verdict-box h3 { color: white !important; margin-top: 0 !important; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; margin-bottom: 0.8rem !important; }
+    .verdict-box p { color: rgba(255,255,255,0.9) !important; margin-bottom: 0 !important; }
+
+    .article-sidebar { position: sticky; top: 100px; }
+    .sidebar-card { background: #f5f0eb; border-radius: 10px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .sidebar-card h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #7a7065; margin-bottom: 1rem; }
+    .sidebar-card .gear-name { font-size: 1rem; font-weight: 600; color: #3d3028; margin-bottom: 0.3rem; }
+    .sidebar-card .gear-sub { font-size: 0.85rem; color: #7a7065; margin-bottom: 1rem; }
+    .sidebar-spec { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid #e8e0d5; font-size: 0.85rem; }
+    .sidebar-spec:last-of-type { border-bottom: none; }
+    .sidebar-spec .spec-label { color: #7a7065; }
+    .sidebar-spec .spec-value { font-weight: 500; color: #3a3530; }
+
+    .pros-cons { margin-top: 1.2rem; }
+    .pros-cons .pro, .pros-cons .con { font-size: 0.85rem; padding: 0.35rem 0; display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.4; }
+    .pros-cons .pro { color: #3a5c35; }
+    .pros-cons .con { color: #7a4535; }
+    .pros-cons .dot { flex-shrink: 0; margin-top: 0.1rem; font-size: 0.7rem; }
+
+    .sidebar-link { display: block; text-align: center; background: #3d3028; color: white; text-decoration: none; padding: 0.75rem; border-radius: 6px; font-size: 0.82rem; letter-spacing: 0.04em; margin-top: 1.2rem; transition: background 0.2s; }
+    .sidebar-link:hover { background: #5a4030; }
+
+    .related-card { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem 0; border-bottom: 1px solid #e8e0d5; text-decoration: none; }
+    .related-card:last-child { border-bottom: none; }
+    .related-card .rc-type { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: #7a7065; }
+    .related-card .rc-title { font-size: 0.88rem; color: #3d3028; font-weight: 500; line-height: 1.3; }
+    .related-icon { width: 36px; height: 36px; background: #e8e0d5; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
+
+    .practical-grid { background: #f5f0eb; padding: 3rem 0; margin-top: 2rem; }
+    .practical-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+    .practical-inner h2 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.08em; color: #7a7065; margin-bottom: 2rem; }
+    .practical-cells { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .practical-cell h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #5a4030; margin-bottom: 0.5rem; }
+    .practical-cell p { font-size: 0.9rem; color: #3a3530; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-breadcrumb"><a href="index.html">Home</a> / <a href="gear.html">Gear</a> / Boot Review</div>
+    <div class="article-tag">Gear Review</div>
+    <h1>Mammut Blackfin Mid</h1>
+    <p class="subtitle">A dedicated winter boot from a Swiss brand. Almost two years in, 20-plus day hikes across snow, ice and rain — here is what I actually think.</p>
+    <div class="article-meta">
+      <span>✍ Mathias Andersson</span>
+      <span>📅 March 2026</span>
+      <span>⏱ 6 min read</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-stats">
+  <div class="stats-grid">
+    <div class="stat-item"><span class="stat-value">-25°C</span><span class="stat-label">Temperature rating</span></div>
+    <div class="stat-item"><span class="stat-value">GORE-TEX</span><span class="stat-label">Waterproofing</span></div>
+    <div class="stat-item"><span class="stat-value">Winter</span><span class="stat-label">Season</span></div>
+    <div class="stat-item"><span class="stat-value">~200 EUR</span><span class="stat-label">Regular price</span></div>
+    <div class="stat-item"><span class="stat-value">10 yrs</span><span class="stat-label">Expected lifespan</span></div>
+  </div>
+</section>
+
+<div class="article-body">
+  <article class="article-content">
+
+    <p>I bought the Mammut Blackfin Mid because I needed one boot that could handle everything the Swiss winter throws at a trail — deep snow, icy paths, cold rain, and the occasional slush that is none of those things at once. Almost two years and more than twenty day hikes later, it has done exactly that. This is not the most exciting review I will write, because the boot has not surprised me much. It has just worked.</p>
+
+    <div class="image-placeholder wide"><div class="icon">📷</div><div class="label">Film photo — Blackfin Mid in the field</div></div>
+
+    <h2>Why this boot</h2>
+    <p>My criteria were straightforward: a dedicated winter boot that could handle genuinely cold and wet conditions, with strong ankle support for uneven terrain, and from a brand I trusted to last. Mammut is Swiss, which matters to me — not for sentimental reasons, but because proximity means easier repairs and the brand has a serious alpine heritage. The Blackfin Mid sat at a price point I was comfortable with, around 200 EUR at full price, and I have since seen it on sale for half that.</p>
+    <p>I also wanted something that would pair well with snowshoes. The rigid sole and structured ankle of a winter boot locks into bindings more cleanly than a softer hiking boot, and this has proven true on every snowshoe outing since.</p>
+
+    <div class="image-placeholder"><div class="icon">📷</div><div class="label">Film photo — boot detail</div></div>
+
+    <h2>Performance across conditions</h2>
+    <p>Snow, ice, rain and cold dry trails — I have worn these in all of it. They are at their best in cold and snowy conditions, which is exactly what they are designed for. The GORE-TEX lining has remained fully waterproof through two seasons of regular use, including some genuinely wet days where I was out for five or six hours. No moisture inside.</p>
+    <p>On ice, the sole grips well for a boot without dedicated crampon points. I have never felt the grip let me down. On wet rock in above-zero temperatures I would prefer a lighter hiking boot, but that is not what this boot is for. Above about 15 degrees it runs warm, though the breathability is better than I expected — I have used it in milder conditions without excessive discomfort.</p>
+
+    <div class="tip-box">
+      <div class="tip-label">On snowshoe compatibility</div>
+      <p>The Blackfin Mid works perfectly with snowshoe bindings. The sole is stiff enough to grip the binding frame cleanly and the ankle height means no rubbing at the binding point. If you are planning snowshoe hiking, this is a strong pairing.</p>
+    </div>
+
+    <h2>Ankle support and fit</h2>
+    <p>The ankle support is the best feature of this boot. On uneven and icy terrain where a rolled ankle is a real possibility, the Blackfin Mid gives you the kind of confidence that lets you focus on the trail rather than your footing. I wear size 43, which is my standard size, and the fit is true to size. With thick Darn Tough wool socks there is enough room without the foot sliding — the ideal winter hiking setup.</p>
+
+    <h2>Durability and materials</h2>
+    <p>The boot has held up well. The upper shows normal scuffing but no structural wear after nearly two years. The sole shows no concerning deterioration. I have not needed repairs.</p>
+    <p>One genuine weakness: the laces. The ends unravel quickly and the laces themselves are slippery, which makes it harder to keep them tight through a full day on the trail. It is a minor annoyance in an otherwise solid boot, and worth replacing the laces early with something more robust.</p>
+
+    <h2>Sustainability and brand</h2>
+    <p>Mammut is a Swiss brand with a genuine commitment to longevity and repairability. I value European brands partly for the lower transport footprint and partly because repair infrastructure is closer. When I eventually need the sole replaced or the lining attended to, a Mammut service centre in Zürich is accessible. That matters for a boot I expect to own for a decade.</p>
+    <p>I would note that if I were buying again now, I would also research whether leather options have become more available in this category. Most modern winter boots use synthetic uppers, which raises questions about PFAS chemicals. A full-grain leather winter boot with GORE-TEX would be my ideal — but that narrows the field considerably and pushes the price up.</p>
+
+    <div class="verdict-box">
+      <h3>The verdict</h3>
+      <p>A bombproof winter boot at a fair price. It handles everything a Swiss winter trail requires, pairs perfectly with snowshoes, and gives ankle support I trust completely. The laces are the one thing I would change. If you need a dedicated winter boot and do not want to think about it again for ten years, this is a serious option.</p>
+    </div>
+
+  </article>
+
+  <aside class="article-sidebar">
+    <div class="sidebar-card">
+      <h4>Reviewed Gear</h4>
+      <div class="gear-name">Mammut Blackfin Mid</div>
+      <div class="gear-sub">Dedicated winter hiking boot</div>
+      <div class="sidebar-spec"><span class="spec-label">Brand</span><span class="spec-value">Mammut (Swiss)</span></div>
+      <div class="sidebar-spec"><span class="spec-label">Waterproofing</span><span class="spec-value">GORE-TEX</span></div>
+      <div class="sidebar-spec"><span class="spec-label">Temperature</span><span class="spec-value">Rated to -25°C</span></div>
+      <div class="sidebar-spec"><span class="spec-label">Season</span><span class="spec-value">Winter / cold weather</span></div>
+      <div class="sidebar-spec"><span class="spec-label">Size worn</span><span class="spec-value">43 (true to size)</span></div>
+      <div class="sidebar-spec"><span class="spec-label">Price</span><span class="spec-value">~200 EUR full price</span></div>
+      <div class="pros-cons">
+        <div class="pro"><span class="dot">✓</span> Fully waterproof in extended wet conditions</div>
+        <div class="pro"><span class="dot">✓</span> Outstanding ankle support on icy terrain</div>
+        <div class="pro"><span class="dot">✓</span> Works perfectly with snowshoe bindings</div>
+        <div class="pro"><span class="dot">✓</span> True to size, good fit with thick socks</div>
+        <div class="pro"><span class="dot">✓</span> Swiss brand with repair infrastructure</div>
+        <div class="con"><span class="dot">✗</span> Laces unravel quickly — worth replacing</div>
+        <div class="con"><span class="dot">✗</span> Runs warm above 15°C</div>
+        <div class="con"><span class="dot">✗</span> Synthetic upper — leather alternative would be preferable</div>
+      </div>
+      <a href="https://www.mammut.com" target="_blank" rel="noopener" class="sidebar-link">View on Mammut.com</a>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>Related reading</h4>
+      <a href="spittelmatten-snowshoe.html" class="related-card">
+        <div class="related-icon">❄️</div>
+        <div><div class="rc-type">Trail Guide</div><div class="rc-title">Spittelmatten Snowshoe Trail — where these boots were worn</div></div>
+      </a>
+      <a href="patagonia-rain-kit-review.html" class="related-card">
+        <div class="related-icon">🧥</div>
+        <div><div class="rc-type">Gear Review</div><div class="rc-title">Patagonia rain kit — the outer layer these boots work with</div></div>
+      </a>
+      <a href="durston-x-dome-2p-review.html" class="related-card">
+        <div class="related-icon">⛺</div>
+        <div><div class="rc-type">Gear Review</div><div class="rc-title">Durston X-Dome 2P — tent review</div></div>
+      </a>
+      <a href="gear.html" class="related-card">
+        <div class="related-icon">🎒</div>
+        <div><div class="rc-type">Gear</div><div class="rc-title">All gear on By Train By Foot</div></div>
+      </a>
+    </div>
+  </aside>
+</div>
+
+<section class="practical-grid">
+  <div class="practical-inner">
+    <h2>Practical information</h2>
+    <div class="practical-cells">
+      <div class="practical-cell"><h4>Best for</h4><p>Winter hiking, snowshoe trips, cold and wet trail conditions from late autumn through early spring.</p></div>
+      <div class="practical-cell"><h4>Not suited for</h4><p>Warm weather hiking above 15°C. A lighter boot is more comfortable and appropriate outside of cold conditions.</p></div>
+      <div class="practical-cell"><h4>Socks</h4><p>Darn Tough wool socks are the ideal pairing. Thick enough for warmth, sized so the fit remains snug without pressure points.</p></div>
+      <div class="practical-cell"><h4>Lace tip</h4><p>Replace the laces early. The originals unravel at the ends and are slippery. A round lace with a wax finish holds better.</p></div>
+      <div class="practical-cell"><h4>Where to buy</h4><p>Direct from Mammut.com or in store at Transa and Bächli Bergsport in Switzerland. Check for seasonal sales — significant discounts are common.</p></div>
+      <div class="practical-cell"><h4>Repairs</h4><p>Mammut has a repair service centre in Zürich. Worth knowing before you decide to replace rather than repair.</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="shared.js"></script>
+<script>
+  document.getElementById('nav-placeholder').innerHTML = getNavHTML('gear');
+  document.getElementById('footer-placeholder').innerHTML = getFooterHTML();
+  document.addEventListener('DOMContentLoaded', () => { initReveal(); });
+</script>
+</body>
+</html>

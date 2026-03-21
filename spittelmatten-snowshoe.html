@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spittelmatten Snowshoe Trail, Sunnbüel — By Train By Foot</title>
+  <meta name="description" content="A 5 km snowshoe loop through the Sunnbüel valley near Kandersteg, fully reachable by train from Bern. Trail guide with SBB directions and Tubbs Flex VRT 25 review.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ARTICLE HERO */
+    .article-hero {
+      margin-top: var(--nav-h); background: var(--earth); color: var(--cream);
+      padding: 5rem 2.5rem 4rem; position: relative; overflow: hidden;
+    }
+    .article-hero-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 2; }
+    .article-hero-bg {
+      position: absolute; top: -2rem; right: -1rem;
+      font-family: 'Playfair Display', serif; font-size: 16rem; font-weight: 700;
+      color: rgba(255,255,255,0.025); line-height: 1; pointer-events: none;
+    }
+    .article-category {
+      font-family: 'Jost', sans-serif; font-size: 0.68rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--lichen); margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+    }
+    .article-category a { color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .article-category a:hover { color: rgba(255,255,255,0.6); }
+    .article-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1.1; margin-bottom: 1.2rem;
+    }
+    .article-title em { font-style: italic; color: var(--lichen); }
+    .article-subtitle {
+      font-family: 'Jost', sans-serif; font-weight: 300; font-size: 1.05rem;
+      color: var(--mist); max-width: 600px; line-height: 1.7; margin-bottom: 2.5rem;
+    }
+    .article-meta-row {
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .meta-item { font-family: 'Jost', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.45); display: flex; align-items: center; gap: 0.4rem; }
+    .meta-item strong { color: rgba(255,255,255,0.7); }
+
+    /* TRAIL STATS BAR */
+    .stats-bar { background: var(--moss); }
+    .stats-bar-inner {
+      max-width: 820px; margin: 0 auto; padding: 1.5rem 2.5rem;
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+    }
+    .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .stat-label { font-family: 'Jost', sans-serif; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lichen); }
+    .stat-value { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--cream); }
+
+    /* TRANSPORT STRIP */
+    .transport-strip { background: var(--parchment); border-bottom: 1px solid var(--mist); }
+    .transport-inner {
+      max-width: 820px; margin: 0 auto; padding: 1.2rem 2.5rem;
+      display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+    }
+    .transport-label { font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lichen); white-space: nowrap; }
+    .transport-step { font-family: 'Jost', sans-serif; font-size: 0.82rem; color: var(--stone); display: flex; align-items: center; gap: 0.4rem; }
+    .transport-arrow { color: var(--lichen); }
+    .transport-links { display: flex; gap: 0.6rem; margin-left: auto; }
+    .tlink { font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 0.8rem; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .tlink.sbb { background: #eb0000; color: #fff; }
+    .tlink.alltrails { background: #3d7a3d; color: #fff; }
+
+    /* ARTICLE BODY */
+    .article-body { max-width: 820px; margin: 0 auto; padding: 4rem 2.5rem 6rem; }
+    .article-text { font-family: 'Libre Baskerville', serif; font-size: 1.02rem; color: var(--stone); line-height: 1.9; margin-bottom: 1.4rem; }
+    .article-h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--earth); line-height: 1.2; margin: 3rem 0 1rem; }
+    .article-h2 em { font-style: italic; color: var(--moss); }
+
+    /* Image placeholder */
+    .article-image { margin: 2.5rem 0; }
+    .article-image-box {
+      aspect-ratio: 16/9; background: var(--parchment);
+      border: 1px solid var(--mist); display: flex; align-items: center;
+      justify-content: center; flex-direction: column; gap: 0.5rem;
+    }
+    .image-placeholder-text { font-family: 'Jost', sans-serif; font-size: 0.78rem; color: var(--lichen); letter-spacing: 0.1em; text-transform: uppercase; }
+    .article-image-caption { font-family: 'Jost', sans-serif; font-size: 0.75rem; color: var(--lichen); margin-top: 0.5rem; font-style: italic; }
+
+    /* Pull quote */
+    .pull-quote { border-left: 3px solid var(--moss); padding: 1rem 2rem; margin: 2.5rem 0; background: var(--parchment); }
+    .pull-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: var(--earth); line-height: 1.5; }
+
+    /* Gear box */
+    .gear-box { background: var(--parchment); padding: 2rem; margin: 2.5rem 0; border-top: 2px solid var(--moss); }
+    .gear-box-label { font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lichen); margin-bottom: 0.8rem; }
+    .gear-box-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--earth); margin-bottom: 0.8rem; }
+    .gear-box-text { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.9rem; color: var(--stone); line-height: 1.75; margin-bottom: 1rem; }
+    .gear-box-rating { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+    .stars { color: var(--bark); }
+    .gear-box-link { font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--moss); color: var(--cream); padding: 0.6rem 1.2rem; display: inline-block; transition: background 0.2s; }
+    .gear-box-link:hover { background: var(--fern); }
+
+    /* Practical info box */
+    .practical-box { background: var(--earth); color: var(--cream); padding: 2rem; margin: 2.5rem 0; }
+    .practical-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--lichen); margin-bottom: 1.2rem; }
+    .practical-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .practical-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .practical-key { font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone); }
+    .practical-val { font-family: 'Jost', sans-serif; font-size: 0.88rem; color: var(--mist); }
+
+    /* Affiliate note */
+    .affiliate-note { font-family: 'Jost', sans-serif; font-size: 0.75rem; color: var(--lichen); font-style: italic; padding: 1rem; border: 1px solid var(--mist); margin-top: 3rem; }
+
+    /* Next/prev */
+    .article-nav { border-top: 1px solid var(--mist); padding-top: 2rem; margin-top: 3rem; display: flex; justify-content: space-between; }
+    .article-nav-link { font-family: 'Jost', sans-serif; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); transition: color 0.2s; }
+    .article-nav-link:hover { color: var(--moss); }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <span class="article-hero-bg">Snow</span>
+  <div class="article-hero-inner">
+    <p class="article-category">
+      <a href="index.html">Home</a> <span>›</span>
+      <a href="trails.html">Trails</a> <span>›</span>
+      <span class="tag hiked" style="font-size:0.6rem">✦ I hiked this</span>
+      <span class="tag" style="font-size:0.6rem;border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.5)">❄️ Snowshoe</span>
+    </p>
+    <h1 class="article-title">Spittelmatten Snowshoe Trail, <em>Sunnbüel</em></h1>
+    <p class="article-subtitle">A 5 km winter loop through a valley between peaks near Kandersteg. Fully reachable by train from Bern. Wearing the Tubbs Flex VRT 25.</p>
+    <div class="article-meta-row">
+      <span class="meta-item">🗓 <strong>Winter 2025</strong></span>
+      <span class="meta-item">⏱ <strong>8 min read</strong></span>
+      <span class="meta-item">📍 <strong>Bernese Oberland</strong></span>
+      <span class="meta-item">🚂 <strong>SBB direct from Bern</strong></span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item"><span class="stat-label">Distance</span><span class="stat-value">5 km</span></div>
+    <div class="stat-item"><span class="stat-label">Elevation</span><span class="stat-value">↑ 260 m</span></div>
+    <div class="stat-item"><span class="stat-label">Duration</span><span class="stat-value">2.5–3 h</span></div>
+    <div class="stat-item"><span class="stat-label">Difficulty</span><span class="stat-value">Easy</span></div>
+    <div class="stat-item"><span class="stat-label">Season</span><span class="stat-value">Winter</span></div>
+    <div class="stat-item"><span class="stat-label">Marked with</span><span class="stat-value">Purple poles</span></div>
+  </div>
+</div>
+
+<!-- TRANSPORT STRIP -->
+<div class="transport-strip">
+  <div class="transport-inner">
+    <span class="transport-label">🚂 Getting there</span>
+    <span class="transport-step">Bern</span>
+    <span class="transport-arrow">→</span>
+    <span class="transport-step">Kandersteg (direct, ~50 min)</span>
+    <span class="transport-arrow">→</span>
+    <span class="transport-step">Bus B241 or walk 35 min</span>
+    <span class="transport-arrow">→</span>
+    <span class="transport-step">Gondola to Sunnbüel</span>
+    <div class="transport-links">
+      <a href="https://www.sbb.ch/en/buying/pages/fahrplan/fahrplan.xhtml?nach=Kandersteg" target="_blank" rel="noopener" class="tlink sbb">🚂 SBB</a>
+      <a href="https://www.alltrails.com/trail/switzerland/bern/spittelmatten-snowshoe-trail" target="_blank" rel="noopener" class="tlink alltrails">🗺 AllTrails</a>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+  <p class="article-text reveal">The gondola from Kandersteg rises slowly and then the valley opens up: white slopes on both sides, pine trees heavy with snow, peaks pushing into the sky above. By the time you step off at Sunnbüel you already feel far from the city, even though you took the train from Bern and a bus from the station. I came up here on a December morning with my partner and her family to try the Spittelmatten snowshoe trail for the first time, and it turned out to be one of the best winter days I have spent in the Bernese Oberland.</p>
+
+  <div class="article-image reveal">
+    <div class="article-image-box">
+      <span style="font-size:2rem">📷</span>
+      <span class="image-placeholder-text">Photo coming — film developing</span>
+    </div>
+    <p class="article-image-caption">The view from the gondola station at Sunnbüel. Shot on Ektar H35.</p>
+  </div>
+
+  <h2 class="article-h2 reveal">The <em>trail</em></h2>
+
+  <p class="article-text reveal">The Spittelmatten trail is 5 km with around 260 metres of elevation gain, most of it saved for the final climb back to the cable car. Plan for 2.5 to 3 hours. The route passes through open valley, a forest, past a long cliff face, and loops back. It is marked throughout with purple poles and suits complete beginners, although you should be in reasonable shape for the ascent at the end.</p>
+
+  <p class="article-text reveal">The trail opens with a gentle descent from the cable car station. The snowshoe route takes a more off-piste line than the winter hiking path, cutting through light slopes and small hills instead of going around them. This is where the valley starts to open up, peaks rising on both sides, cross-country tracks snaking across the flat to your left. Walking down into it, I felt that particular kind of quiet you only get in deep snow.</p>
+
+  <div class="article-image reveal">
+    <div class="article-image-box">
+      <span style="font-size:2rem">📷</span>
+      <span class="image-placeholder-text">Photo coming — film developing</span>
+    </div>
+    <p class="article-image-caption">The valley opens up on the descent from the gondola station.</p>
+  </div>
+
+  <h2 class="article-h2 reveal">Into the <em>forest</em></h2>
+
+  <p class="article-text reveal">The trail flattens as it crosses the valley floor, then enters a small forest. The pines were loaded with snow, branches bent almost to the path. The trail snakes through with sharp turns and sudden little climbs, and this is where snowshoes start to feel genuinely impressive: grip on every surface, no slipping, the kind of confidence underfoot you do not expect. The forest opens into a clearing with a few large rocks — a sheltered spot, out of the wind but with the peaks still visible. We stopped here for lunch.</p>
+
+  <div class="pull-quote reveal">
+    <p>This is where snowshoes start to feel genuinely impressive: grip on every surface, the kind of confidence underfoot you do not expect.</p>
+  </div>
+
+  <div class="article-image reveal">
+    <div class="article-image-box">
+      <span style="font-size:2rem">📷</span>
+      <span class="image-placeholder-text">Photo coming — film developing</span>
+    </div>
+    <p class="article-image-caption">Inside the forest section. Pine branches loaded with snow.</p>
+  </div>
+
+  <h2 class="article-h2 reveal">The cliff face and the <em>climb back</em></h2>
+
+  <p class="article-text reveal">We turned left out of the forest and crossed back over the valley floor, past all the cross-country trails, until we reached the opposite cliff face. Two people were ice climbing on a frozen waterfall there, one working up the ice, the other on the ropes below. Worth stopping to watch for a few minutes. From here the trail turns and begins the climb back up toward the cable car station: the steepest section of the day, short but rewarding. At the top, the restaurant at the cable car station does fries, apple cake, beer and hot chocolate. We had all four.</p>
+
+  <div class="article-image reveal">
+    <div class="article-image-box">
+      <span style="font-size:2rem">📷</span>
+      <span class="image-placeholder-text">Photo coming — film developing</span>
+    </div>
+    <p class="article-image-caption">Ice climbers on the frozen waterfall at the far end of the valley.</p>
+  </div>
+
+  <!-- GEAR BOX -->
+  <div class="gear-box reveal">
+    <p class="gear-box-label">Gear used on this trail</p>
+    <h3 class="gear-box-title">Tubbs Flex VRT 25 Snowshoe</h3>
+    <p class="gear-box-text">The snowshoes available to rent at the gondola station happen to be the Tubbs Flex VRT 25, a model I had been wanting to try. The standout feature is the BOA binding system: instead of straps, you tighten by turning a dial, which clicks tight in seconds and distributes tension evenly across your boot. It is the best binding system I have used on a snowshoe.</p>
+    <p class="gear-box-text">The shoe itself is light and the traction is solid throughout. The heel lift is worth mentioning: on steeper climbs it reduces the strain on your ankle by keeping your foot at a more natural angle and improving grip at the same time. For a shoe you can try here for CHF 15 to 20, the value is hard to argue with.</p>
+    <div class="gear-box-rating"><span class="stars">★★★★★</span><span style="font-family:'Jost',sans-serif;font-size:0.8rem;color:var(--stone)">Highly recommended</span></div>
+    <a href="gear.html" class="gear-box-link">More gear reviews →</a>
+  </div>
+
+  <div class="gear-box reveal">
+    <p class="gear-box-label">Boots worn on this trail</p>
+    <h3 class="gear-box-title">Mammut Blackfin Mid</h3>
+    <p class="gear-box-text">A dedicated winter boot rated to -25°C. The rigid sole locks into snowshoe bindings cleanly and the ankle support means you never feel uncertain on uneven or icy ground. After almost two years of use across snow, ice and everything in between, they remain fully waterproof and have shown no meaningful wear. The one weakness is the laces, which unravel at the ends quickly.</p>
+    <div class="gear-box-rating"><span class="stars">★★★★☆</span><span style="font-family:'Jost',sans-serif;font-size:0.8rem;color:var(--stone)">Would buy again — with better laces</span></div>
+    <a href="mammut-blackfin-mid-review.html" class="gear-box-link">Read full review →</a>
+  </div>
+
+  <h2 class="article-h2 reveal">What to <em>wear and bring</em></h2>
+
+  <p class="article-text reveal">One thing worth knowing before you go: snowshoes float on top of packed snow, but you will occasionally punch through with one foot. It is called post-holing and it is not a problem — just pull your foot out and keep walking. It does mean your boots will get wet if they are not waterproof, so wear winter boots with water-resistant uppers. Beyond that, dress as you would for a moderately active hike in cold weather. A ski jacket is usually too warm once you are moving. I wore a t-shirt, a fleece and hiking trousers at 6 degrees in sun and was comfortable throughout. Bring a warmer layer for breaks, especially if it is cloudy.</p>
+
+  <p class="article-text reveal">The restaurant at the top is good, but I would recommend bringing lunch and eating it on the trail. The clearing in the forest is a natural stop, and if you continue past the forest exit you will find a few simple open shelters with benches. There are no toilets beyond the cable car station, so plan accordingly before you set off.</p>
+
+  <!-- PRACTICAL BOX -->
+  <div class="practical-box reveal">
+    <p class="practical-title">Practical information</p>
+    <div class="practical-grid">
+      <div class="practical-item"><span class="practical-key">From Bern</span><span class="practical-val">Train to Kandersteg (~50 min), then bus B241 or 35 min walk, then gondola</span></div>
+      <div class="practical-item"><span class="practical-key">Gondola cost</span><span class="practical-val">CHF 40 return · CHF 22.50 with Halbtax, GA or Swiss Travel Pass</span></div>
+      <div class="practical-item"><span class="practical-key">Snowshoe rental</span><span class="practical-val">CHF 20 full day · CHF 15 half day (at gondola base station)</span></div>
+      <div class="practical-item"><span class="practical-key">Trail marking</span><span class="practical-val">Purple poles — follow snowshoe signs, not winter hiking signs</span></div>
+      <div class="practical-item"><span class="practical-key">Best season</span><span class="practical-val">December to March, snow conditions permitting</span></div>
+      <div class="practical-item"><span class="practical-key">Restaurant</span><span class="practical-val">At gondola top station — fries, apple cake, hot drinks</span></div>
+      <div class="practical-item"><span class="practical-key">Toilets</span><span class="practical-val">Cable car station only — none on the trail</span></div>
+      <div class="practical-item"><span class="practical-key">Guest card tip</span><span class="practical-val">Staying overnight in Kandersteg gives free transport and gondola discounts</span></div>
+    </div>
+  </div>
+
+  <p class="affiliate-note reveal">This article contains no affiliate links. The snowshoes were rented on the day. All opinions are my own.</p>
+
+  <div class="article-nav reveal">
+    <a href="trails.html" class="article-nav-link">← All trails</a>
+    <a href="jacobsweg-stage-13-schwarzenburg-fribourg.html" class="article-nav-link">Via Jacobi Stage 13 →</a>
+  </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="shared.js"></script>
+<script>
+  document.getElementById('nav-placeholder').innerHTML = getNavHTML('trails');
+  document.getElementById('footer-placeholder').innerHTML = getFooterHTML();
+  document.addEventListener('DOMContentLoaded', () => { initReveal(); initNewsletter(); });
+</script>
+</body>
+</html>
