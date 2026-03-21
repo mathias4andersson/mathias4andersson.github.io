@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Durston X-Dome 2P Review | By Train By Foot</title>
+  <meta name="description" content="An honest review of the Durston X-Dome 2P tent used in rain and mountain conditions. What works, what doesn't, and whether it earns a place in a long-term gear setup.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .article-hero {
+      background: linear-gradient(135deg, #2d4a3e 0%, #4a6741 50%, #3d5c35 100%);
+      padding: 80px 0 60px;
+      color: white;
+    }
+    .article-hero-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+    .article-breadcrumb { font-size: 0.8rem; opacity: 0.7; margin-bottom: 1.2rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .article-breadcrumb a { color: white; text-decoration: none; }
+    .article-breadcrumb a:hover { opacity: 0.9; }
+    .article-tag { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1.2rem; }
+    .article-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+    .article-hero .subtitle { font-size: 1.1rem; opacity: 0.85; line-height: 1.6; max-width: 620px; font-weight: 300; }
+    .article-meta { display: flex; gap: 2rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.82rem; opacity: 0.75; flex-wrap: wrap; }
+    .article-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+    .article-stats { background: #f5f0eb; border-bottom: 1px solid #e8e0d5; }
+    .stats-grid { max-width: 860px; margin: 0 auto; padding: 1.5rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; }
+    .stat-item { text-align: center; }
+    .stat-value { font-size: 1.3rem; font-weight: 500; color: #2d4a3e; display: block; }
+    .stat-label { font-size: 0.72rem; color: #7a7065; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
+
+    .article-body { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: start; }
+    @media (max-width: 768px) { .article-body { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .article-content p { font-size: 1.05rem; line-height: 1.8; color: #3a3530; margin-bottom: 1.4rem; }
+    .article-content h2 { font-size: 1.3rem; font-weight: 500; color: #2d4a3e; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e8e0d5; }
+
+    .image-placeholder { background: linear-gradient(135deg, #e8e4de 0%, #d5cfc7 100%); border-radius: 8px; aspect-ratio: 16/10; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2rem 0; color: #8a8078; }
+    .image-placeholder .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .image-placeholder .label { font-size: 0.82rem; }
+    .image-placeholder.wide { aspect-ratio: 21/9; }
+
+    .tip-box { background: #f0f5f0; border-left: 4px solid #4a6741; border-radius: 0 8px 8px 0; padding: 1.2rem 1.5rem; margin: 2rem 0; }
+    .tip-box .tip-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #4a6741; font-weight: 600; margin-bottom: 0.5rem; }
+    .tip-box p { margin: 0; font-size: 0.95rem !important; color: #3a3530; }
+
+    .verdict-box { background: #2d4a3e; color: white; border-radius: 12px; padding: 2rem; margin: 2.5rem 0; }
+    .verdict-box h3 { color: white !important; margin-top: 0 !important; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; margin-bottom: 0.8rem !important; }
+    .verdict-box p { color: rgba(255,255,255,0.9) !important; margin-bottom: 0 !important; }
+
+    .article-sidebar { position: sticky; top: 100px; }
+    .sidebar-card { background: #f5f0eb; border-radius: 10px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .sidebar-card h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #7a7065; margin-bottom: 1rem; }
+    .sidebar-card .gear-name { font-size: 1rem; font-weight: 600; color: #2d4a3e; margin-bottom: 0.3rem; }
+    .sidebar-card .gear-sub { font-size: 0.85rem; color: #7a7065; margin-bottom: 1rem; }
+    .sidebar-spec { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid #e8e0d5; font-size: 0.85rem; }
+    .sidebar-spec:last-of-type { border-bottom: none; }
+    .sidebar-spec .spec-label { color: #7a7065; }
+    .sidebar-spec .spec-value { font-weight: 500; color: #3a3530; }
+
+    .pros-cons { margin-top: 1.2rem; }
+    .pros-cons .pro, .pros-cons .con { font-size: 0.85rem; padding: 0.35rem 0; display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.4; }
+    .pros-cons .pro { color: #3a5c35; }
+    .pros-cons .con { color: #7a4535; }
+    .pros-cons .dot { flex-shrink: 0; margin-top: 0.1rem; font-size: 0.7rem; }
+
+    .sidebar-link { display: block; text-align: center; background: #2d4a3e; color: white; text-decoration: none; padding: 0.75rem; border-radius: 6px; font-size: 0.82rem; letter-spacing: 0.04em; margin-top: 1.2rem; transition: background 0.2s; }
+    .sidebar-link:hover { background: #4a6741; }
+
+    .related-card { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem 0; border-bottom: 1px solid #e8e0d5; text-decoration: none; }
+    .related-card:last-child { border-bottom: none; }
+    .related-card .rc-type { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: #7a7065; }
+    .related-card .rc-title { font-size: 0.88rem; color: #2d4a3e; font-weight: 500; line-height: 1.3; }
+    .related-icon { width: 36px; height: 36px; background: #e8e0d5; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
+
+    .practical-grid { background: #f5f0eb; padding: 3rem 0; margin-top: 2rem; }
+    .practical-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+    .practical-inner h2 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.08em; color: #7a7065; margin-bottom: 2rem; }
+    .practical-cells { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .practical-cell h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #4a6741; margin-bottom: 0.5rem; }
+    .practical-cell p { font-size: 0.9rem; color: #3a3530; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-breadcrumb"><a href="index.html">Home</a> / <a href="gear.html">Gear</a> / Tent Review</div>
+    <div class="article-tag">Gear Review</div>
+    <h1>Durston X-Dome 2P</h1>
+    <p class="subtitle">A freestanding tent that balances liveable space with reasonable weight. Used in rain, dry mountain conditions, and warm summer temperatures — here is what I actually think.</p>
+    <div class="article-meta">
+      <span>✍ Mathias Andersson</span>
+      <span>📅 March 2026</span>
+      <span>⏱ 7 min read</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-stats">
+  <div class="stats-grid">
+    <div class="stat-item"><span class="stat-value">&lt;10 min</span><span class="stat-label">Solo pitch time</span></div>
+    <div class="stat-item"><span class="stat-value">2P</span><span class="stat-label">Capacity</span></div>
+    <div class="stat-item"><span class="stat-value">3-season</span><span class="stat-label">Use case</span></div>
+    <div class="stat-item"><span class="stat-value">Freestanding</span><span class="stat-label">Pitch type</span></div>
+    <div class="stat-item"><span class="stat-value">10 yrs</span><span class="stat-label">Expected lifespan</span></div>
+  </div>
+</section>
+
+<div class="article-body">
+  <article class="article-content">
+
+    <p>The decision to buy a tent takes longer than the decision to use one. I spent months reading reviews, checking specs, and comparing options before settling on the Durston X-Dome 2P. I wanted something freestanding, with enough room to actually live in during a multi-day trip, and light enough that I would not resent carrying it. I have used it in rain, mild mountain conditions, and summer temperatures, and I have a clear enough picture to say what works, what does not, and who this tent is actually for.</p>
+
+    <div class="image-placeholder wide"><div class="icon">📷</div><div class="label">Film photo — X-Dome pitched in mountain conditions</div></div>
+
+    <h2>Why this tent</h2>
+    <p>My requirements were specific. I wanted a freestanding dome because I hike in places where staking out a tent is not always straightforward, and I did not want to rely on trekking poles for pitching. I also wanted enough interior space to sit up fully, to keep my backpack inside during bad weather if needed, and to share the tent with my girlfriend occasionally without it feeling like a bivouac sack for two. Most ultralight tents sacrifice at least one of these things.</p>
+    <p>The X-Dome does not. It is not the lightest tent on the market, but it is light enough for a longer trail where the cumulative weight of everything in your pack matters. More importantly, the materials feel built to last. I bought it expecting to own it for ten years minimum. The construction backs that expectation up.</p>
+
+    <h2>Setting it up</h2>
+    <p>Under ten minutes solo, including four guy-lines. Once you have done it twice you could go faster. The pitch flexibility is genuinely useful: you can attach the inner tent to the outer before you start and pitch everything in one go, pitch the outer first and clip the inner in underneath, or use the inner only on clear nights. In practice I pitch outer first when it is raining and everything in one go otherwise.</p>
+
+    <div class="image-placeholder"><div class="icon">📷</div><div class="label">Film photo — tent setup sequence</div></div>
+
+    <p>One thing worth knowing: keep the poles out of the tent bag when packing. The bag is sized for the fabric only. The poles go on the side of your pack, either in an external pocket or strapped on. This is not a problem once you know it, but it is not obvious the first time.</p>
+
+    <h2>Rain and condensation</h2>
+    <p>Fully waterproof. In mild rain it has kept me dry without any issue. The seams hold well and the outer tent sheds water cleanly. No complaints there.</p>
+    <p>Condensation is present but manageable. The double-wall design handles it better than a single-wall tent, but in cool damp conditions you will get moisture on the inside of the outer. The key is making sure your sleeping bag does not touch the outer wall, especially if it is a down bag. A small amount of care goes a long way.</p>
+
+    <div class="tip-box">
+      <div class="tip-label">Packing tip</div>
+      <p>When breaking camp in rain, put the inner tent into a small waterproof bag — a simple dry bag or even a zip-lock works — before dealing with the outer tent. This keeps the inner dry for your next pitch. Pack the poles separately on the outside of your bag. It adds 30 seconds and saves a lot of frustration.</p>
+    </div>
+
+    <p>Ventilation is good. I have used it in temperatures around 20 degrees and slept comfortably without feeling like I was in a sealed bag. The mesh inner panels do their job.</p>
+
+    <h2>Space for two</h2>
+    <p>I have not yet slept in it with two people, but I have set it up and tested the space. Two sleeping mats fit without overlap. The ceiling is high enough to sit up fully, which matters on a rest day when you are waiting out rain. The vestibules are generous — large enough to store two backpacks and keep them dry. When it is two people the packs live outside in the vestibules rather than inside, but that is entirely workable.</p>
+
+    <div class="image-placeholder"><div class="icon">📷</div><div class="label">Film photo — interior space</div></div>
+
+    <h2>Durability and materials</h2>
+    <p>This is where I feel most confident. The fabrics feel substantial without being heavy. I can see no wear on the floor despite not using a groundsheet. My decision to skip the footprint was deliberate: from everything I read, the floor material is durable enough on typical terrain and a footprint adds weight for marginal benefit. So far, that has held up.</p>
+    <p>The dome shape distributes tension well and I have not had any pole stress points or fabric pull in normal conditions. For high alpine winter use with serious wind load I would want a different tent, but for three-season hiking this structure holds up well.</p>
+
+    <h2>What it is not for</h2>
+    <p>Winter wild camping in genuinely exposed conditions. If I were planning overnight hikes with potential for heavy snow load or sustained high winds, I would research a different option. The X-Dome is a three-season tent and performs as one. Do not ask it to be something it is not.</p>
+    <p>It is also worth being clear that ultralight this is not. If you are counting grams obsessively and optimising a thru-hike where every 100 grams matters, there are lighter options. I made a deliberate trade: a little more weight in exchange for materials and construction that I expect to last significantly longer than cheaper alternatives. That trade-off will not suit everyone.</p>
+
+    <div class="verdict-box">
+      <h3>The verdict</h3>
+      <p>I would buy it again. The X-Dome earns its place in a long-term gear setup. It is freestanding, genuinely spacious for one person and workable for two, fast to pitch in multiple configurations, and built from materials that suggest real longevity. The wet packing challenge is real but solvable with a dry bag for the inner. If you are looking for a tent you will own for a decade rather than replace in two years, this is a serious candidate.</p>
+    </div>
+
+  </article>
+
+  <aside class="article-sidebar">
+    <div class="sidebar-card">
+      <h4>Reviewed Gear</h4>
+      <div class="gear-name">Durston X-Dome 2P</div>
+      <div class="gear-sub">3-season freestanding tent</div>
+      <div class="sidebar-spec"><span class="spec-label">Capacity</span><span class="spec-value">2 person</span></div>
+      <div class="sidebar-spec"><span class="spec-label">Type</span><span class="spec-value">Freestanding dome</span></div>
+      <div class="sidebar-spec"><span class="spec-label">Walls</span><span class="spec-value">Double-wall</span></div>
+      <div class="sidebar-spec"><span class="spec-label">Season</span><span class="spec-value">3-season</span></div>
+      <div class="sidebar-spec"><span class="spec-label">Groundsheet</span><span class="spec-value">Not used</span></div>
+      <div class="pros-cons">
+        <div class="pro"><span class="dot">✓</span> Freestanding, no stakes required to pitch</div>
+        <div class="pro"><span class="dot">✓</span> Multiple pitch configurations</div>
+        <div class="pro"><span class="dot">✓</span> Excellent interior space for one, workable for two</div>
+        <div class="pro"><span class="dot">✓</span> Solid materials, built to last</div>
+        <div class="pro"><span class="dot">✓</span> Good ventilation in warm conditions</div>
+        <div class="con"><span class="dot">✗</span> Wet packing requires a system</div>
+        <div class="con"><span class="dot">✗</span> Not a winter tent</div>
+        <div class="con"><span class="dot">✗</span> Poles must be packed separately</div>
+      </div>
+      <a href="https://durstongear.com" target="_blank" rel="noopener" class="sidebar-link">View on Durston Gear</a>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>Related reading</h4>
+      <a href="mammut-blackfin-mid-review.html" class="related-card">
+        <div class="related-icon">🥾</div>
+        <div><div class="rc-type">Gear Review</div><div class="rc-title">Mammut Blackfin Mid — winter boot review</div></div>
+      </a>
+      <a href="patagonia-rain-kit-review.html" class="related-card">
+        <div class="related-icon">🧥</div>
+        <div><div class="rc-type">Gear Review</div><div class="rc-title">Patagonia rain kit — for camping in wet conditions</div></div>
+      </a>
+      <a href="gear.html" class="related-card">
+        <div class="related-icon">🎒</div>
+        <div><div class="rc-type">Gear</div><div class="rc-title">All gear on By Train By Foot</div></div>
+      </a>
+      <a href="trails.html" class="related-card">
+        <div class="related-icon">🗺</div>
+        <div><div class="rc-type">Trails</div><div class="rc-title">Trails where this gear gets used</div></div>
+      </a>
+    </div>
+  </aside>
+</div>
+
+<section class="practical-grid">
+  <div class="practical-inner">
+    <h2>Practical information</h2>
+    <div class="practical-cells">
+      <div class="practical-cell"><h4>Best for</h4><p>3-season hiking, overnight trips, multi-day routes where you want reliable weather protection and real living space.</p></div>
+      <div class="practical-cell"><h4>Not suited for</h4><p>Winter wild camping in exposed conditions or high-wind alpine environments. A 4-season tent is the right tool for that.</p></div>
+      <div class="practical-cell"><h4>Pitch tips</h4><p>Pitch outer first in rain. Keep poles separate from the bag. Pack the inner tent in a dry bag when breaking camp wet.</p></div>
+      <div class="practical-cell"><h4>Maintenance</h4><p>Always dry fully before long-term storage. This is the single most important thing you can do to extend the life of any tent.</p></div>
+      <div class="practical-cell"><h4>Groundsheet</h4><p>Not necessary in my use. Floor material holds up on typical terrain without one. Check conditions if using on sharp rock or gravel.</p></div>
+      <div class="practical-cell"><h4>Where to buy</h4><p>Direct from Durston Gear. Ships to Europe. Check current availability and weight specs on their website before purchasing.</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="shared.js"></script>
+<script>
+  document.getElementById('nav-placeholder').innerHTML = getNavHTML('gear');
+  document.getElementById('footer-placeholder').innerHTML = getFooterHTML();
+  document.addEventListener('DOMContentLoaded', () => { initReveal(); });
+</script>
+</body>
+</html>
